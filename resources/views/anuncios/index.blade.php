@@ -1,0 +1,41 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h1 class="my-4">Listado de Anuncios</h1>
+
+    <a href="{{ route('anuncios.create') }}" class="btn btn-primary mb-3">Crear Nuevo Anuncio</a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Género</th>
+                <th>Edad</th>
+                <th>Nacionalidad</th>
+                <th>Servicios</th>
+                <th>Municipio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($anuncios as $anuncio)
+            <tr>
+                <td>{{ $anuncio->genero }}</td>
+                <td>{{ $anuncio->edad }}</td>
+                <td>{{ $anuncio->nacionalidad }}</td>
+                <td>{{ $anuncio->servicios }}</td>
+                <td>{{ $anuncio->municipio }}</td>
+                <td>
+                    <a href="{{ route('anuncios.edit', $anuncio) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ route('anuncios.destroy', $anuncio) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este anuncio?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endsection
