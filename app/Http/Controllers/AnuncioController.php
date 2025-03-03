@@ -34,7 +34,6 @@ class AnuncioController extends Controller
             'altura' => 'string',
             'peso' => 'string',
             'descripcion' => 'string',
-            'imagen' => 'string',
             'me_gusta' => 'integer',
         ]);
 
@@ -69,7 +68,6 @@ class AnuncioController extends Controller
             'altura' => 'string',
             'peso' => 'string',
             'descripcion' => 'string',
-            'imagen' => 'string',
             'me_gusta' => 'integer',
         ]);
 

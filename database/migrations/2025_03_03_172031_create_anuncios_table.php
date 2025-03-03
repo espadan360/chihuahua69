@@ -26,10 +26,9 @@ class CreateAnunciosTable extends Migration
             $table->string('medidas');
             $table->string('altura');
             $table->string('peso');
-            $table->text('descripcion');
-            $table->string('imagen');
             $table->integer('me_gusta')->default(0);
             $table->foreignId('id_usuario')->constrained()->onDelete('cascade');
+            $table->integer('estado')->default(1); // Aquí añadimos el campo 'estado' con valor predeterminado 1
             $table->timestamps();
         });
     }

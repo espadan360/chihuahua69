@@ -114,25 +114,6 @@
             @error('descripcion')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>
-
-        <!-- Imagen -->
-        <div class="form-group">
-            <label for="imagen">Imagen</label>
-            <input type="file" class="form-control @error('imagen') is-invalid @enderror" id="imagen" name="imagen" value="{{ old('imagen', $anuncio->imagen) }}">
-            @error('imagen')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <!-- Me gusta -->
-        <div class="form-group">
-            <label for="me_gusta">Me gusta</label>
-            <input type="number" class="form-control @error('me_gusta') is-invalid @enderror" id="me_gusta" name="me_gusta" value="{{ old('me_gusta', $anuncio->me_gusta) }}">
-            @error('me_gusta')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
 
         <!-- El campo 'id_usuario' no debe ser editable por el usuario -->
         <input type="hidden" name="id_usuario" value="{{ $anuncio->id_usuario }}">
