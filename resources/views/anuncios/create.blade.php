@@ -103,7 +103,13 @@
             @enderror
         </div>
 
-
+        <div class="form-group">
+        <label for="imagenes">Imágenes</label>
+        <input type="file" class="form-control @error('imagenes') is-invalid @enderror" id="imagenes" name="imagenes[]" multiple>
+        @error('imagenes')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
         <button type="submit" class="btn btn-success">Crear Anuncio</button>
     </form>
 </div>

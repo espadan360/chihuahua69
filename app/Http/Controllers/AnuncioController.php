@@ -3,7 +3,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Anuncio;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Asegúrate de importar la clase Auth
+use App\Models\Imagen;
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\Auth;
 
 class AnuncioController extends Controller
 {
@@ -20,7 +23,7 @@ class AnuncioController extends Controller
 
     public function store(Request $request)
     {
-        // Eliminamos las validaciones de 'required' para el campo 'id_usuario'
+        // Validaciones del anuncio
         $request->validate([
             'genero' => 'string',
             'edad' => 'integer',
@@ -35,17 +38,40 @@ class AnuncioController extends Controller
             'peso' => 'string',
             'descripcion' => 'string',
             'me_gusta' => 'integer',
+            'imagenes' => 'nullable|array',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        // Agregamos el ID del usuario autenticado al campo 'id_usuario'
-        $request->merge(['id_usuario' => Auth::id()]); // Asignamos el ID del usuario actual
-
-        // Guardamos el anuncio en la base de datos
-        Anuncio::create($request->all());
-
-        // Redirigimos al índice de anuncios
+    
+        $request->merge(['id_usuario' => Auth::id()]);
+    
+        $anuncio = Anuncio::create($request->all());
+    
+        // Subimos las imágenes
+        if ($request->hasFile('imagenes')) {
+            $imagenes = $request->file('imagenes');
+            $rutaDirectorio = 'anuncios/' . $anuncio->id;
+    
+            $isPrincipalSet = false;
+    
+            foreach ($imagenes as $imagen) {
+                $ruta = $imagen->store($rutaDirectorio, 'public');
+    
+                // Si aún no hemos asignado una imagen como principal, la primera imagen será la principal
+                $principal = $isPrincipalSet ? null : 1;
+                $isPrincipalSet = true;
+    
+                Imagen::create([
+                    'id_anuncio' => $anuncio->id,
+                    'ruta' => $ruta,
+                    'principal' => $principal,
+                ]);
+            }
+        }
+    
         return redirect()->route('anuncios.index');
     }
+    
+    
 
     public function edit(Anuncio $anuncio)
     {
@@ -54,7 +80,6 @@ class AnuncioController extends Controller
 
     public function update(Request $request, Anuncio $anuncio)
     {
-        // Eliminamos las validaciones de 'required' para el campo 'id_usuario'
         $request->validate([
             'genero' => 'string',
             'edad' => 'integer',
@@ -69,14 +94,63 @@ class AnuncioController extends Controller
             'peso' => 'string',
             'descripcion' => 'string',
             'me_gusta' => 'integer',
+            'imagenes' => 'nullable|array',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'eliminar_imagenes' => 'nullable|array',
+            'eliminar_imagenes.*' => 'exists:imagenes,id',
         ]);
-
-        // Actualizamos el anuncio
+    
+        // Actualizar el anuncio
         $anuncio->update($request->all());
-
-        // Redirigimos al índice de anuncios
+    
+        // Eliminar imágenes seleccionadas
+        if ($request->has('eliminar_imagenes')) {
+            foreach ($request->eliminar_imagenes as $imagenId) {
+                $imagen = Imagen::find($imagenId);
+                if ($imagen && $imagen->id_anuncio == $anuncio->id) {
+                    Storage::disk('public')->delete($imagen->ruta);
+                    $imagen->delete();
+                }
+            }
+        }
+    
+        // Marcar como principal la imagen seleccionada
+        if ($request->has('imagen_principal')) {
+            // Establecer principal en null para todas las imágenes
+            Imagen::where('id_anuncio', $anuncio->id)->update(['principal' => null]);
+    
+            // Establecer la imagen seleccionada como principal
+            $imagenPrincipal = Imagen::find($request->imagen_principal);
+            if ($imagenPrincipal) {
+                $imagenPrincipal->update(['principal' => 1]);
+            }
+        }
+    
+        // Subir nuevas imágenes
+        if ($request->hasFile('imagenes')) {
+            $imagenes = $request->file('imagenes');
+            $rutaDirectorio = 'anuncios/' . $anuncio->id;
+    
+            $isPrincipalSet = false;
+    
+            foreach ($imagenes as $imagen) {
+                $ruta = $imagen->store($rutaDirectorio, 'public');
+                
+                $principal = $isPrincipalSet ? null : 1;
+                $isPrincipalSet = true;
+    
+                Imagen::create([
+                    'id_anuncio' => $anuncio->id,
+                    'ruta' => $ruta,
+                    'principal' => $principal,
+                ]);
+            }
+        }
+    
         return redirect()->route('anuncios.index');
     }
+    
+    
 
     public function destroy(Anuncio $anuncio)
     {

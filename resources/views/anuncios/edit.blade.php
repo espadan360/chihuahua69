@@ -114,7 +114,41 @@
             @error('descripcion')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+        </div>
 
+        
+  <!-- Mostrar imágenes actuales -->
+ <!-- Mostrar imágenes actuales -->
+<div class="form-group">
+    <label for="imagenes">Imágenes actuales:</label>
+    <div class="row">
+        @foreach($anuncio->imagenes as $imagen)
+            <div class="col-md-3">
+                <img src="{{ asset('storage/' . $imagen->ruta) }}" class="img-thumbnail" alt="Imagen del anuncio">
+                <br>
+                <label>
+                    <input type="checkbox" name="eliminar_imagenes[]" value="{{ $imagen->id }}">
+                    Eliminar esta imagen
+                </label>
+                <br>
+                <!-- Checkbox para seleccionar imagen principal -->
+                <label>
+                    <input type="radio" name="imagen_principal" value="{{ $imagen->id }}" {{ $imagen->principal ? 'checked' : '' }}>
+                    Esta es la imagen principal
+                </label>
+            </div>
+        @endforeach
+    </div>
+</div>
+
+        <!-- Subir nuevas imágenes -->
+        <div class="form-group">
+            <label for="imagenes">Subir nuevas imágenes (opcional):</label>
+            <input type="file" class="form-control @error('imagenes') is-invalid @enderror" id="imagenes" name="imagenes[]" multiple>
+            @error('imagenes')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
         <!-- El campo 'id_usuario' no debe ser editable por el usuario -->
         <input type="hidden" name="id_usuario" value="{{ $anuncio->id_usuario }}">
 

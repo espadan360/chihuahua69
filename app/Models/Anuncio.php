@@ -15,4 +15,10 @@ class Anuncio extends Model
         'medidas', 'altura', 'peso', 'descripcion', 
         'me_gusta', 'id_usuario'
     ];
+
+    // Relación con las imágenes
+    public function imagenes()
+    {
+        return $this->hasMany(Imagen::class, 'id_anuncio'); // Aquí se establece la relación
+    }
 }
