@@ -23,7 +23,6 @@ class CreateAnunciosTable extends Migration
             $table->string('municipio');
             $table->string('lugar_atiendo');
             $table->string('horarios_atiendo');
-            $table->string('horas');
             $table->string('medidas');
             $table->string('altura');
             $table->string('peso');

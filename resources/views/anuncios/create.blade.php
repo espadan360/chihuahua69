@@ -1,5 +1,3 @@
-<!-- resources/views/anuncios/create.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -69,6 +67,30 @@
             <label for="horarios_atiendo">Horarios de atención</label>
             <input type="text" class="form-control @error('horarios_atiendo') is-invalid @enderror" id="horarios_atiendo" name="horarios_atiendo" value="{{ old('horarios_atiendo') }}" required>
             @error('horarios_atiendo')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="medidas">Medidas</label>
+            <input type="text" class="form-control @error('medidas') is-invalid @enderror" id="medidas" name="medidas" value="{{ old('medidas') }}" required>
+            @error('medidas')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="altura">Altura (cm)</label>
+            <input type="number" class="form-control @error('altura') is-invalid @enderror" id="altura" name="altura" value="{{ old('altura') }}" required>
+            @error('altura')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="peso">Peso (kg)</label>
+            <input type="number" class="form-control @error('peso') is-invalid @enderror" id="peso" name="peso" value="{{ old('peso') }}" required>
+            @error('peso')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
