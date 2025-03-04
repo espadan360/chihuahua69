@@ -95,6 +95,7 @@ class AnuncioController extends Controller
             'peso' => 'string',
             'descripcion' => 'string',
             'me_gusta' => 'integer',
+            'precio' => 'string',
             'estado' => 'required|integer|in:1,2', // Validación del estado
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',

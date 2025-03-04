@@ -3,13 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anuncio;
+use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Obtener solo los anuncios con estado = 1 (activados) junto con sus imágenes
-        $anuncios = Anuncio::with('imagenes')->where('estado', 1)->get();
+        // Obtener solo los anuncios con estado = 1 (activados)
+        $query = Anuncio::with('imagenes')->where('estado', 1);
+
+        // Aplicar filtros si están presentes en la solicitud
+        if ($request->has('genero') && $request->genero != '') {
+            $query->where('genero', $request->genero);
+        }
+
+        if ($request->has('edad') && $request->edad != '') {
+            $query->where('edad', $request->edad);
+        }
+
+        if ($request->has('nacionalidad') && $request->nacionalidad != '') {
+            $query->where('nacionalidad', $request->nacionalidad);
+        }
+
+        if ($request->has('servicios') && $request->servicios != '') {
+            $query->where('servicios', 'like', '%' . $request->servicios . '%');
+        }
+
+        if ($request->has('municipio') && $request->municipio != '') {
+            $query->where('municipio', $request->municipio);
+        }
+
+        // Ejecutar la consulta y obtener los anuncios
+        $anuncios = $query->get();
 
         // Verificar si hay anuncios
         if ($anuncios->isEmpty()) {
@@ -33,7 +58,6 @@ class WelcomeController extends Controller
         // Pasar los anuncios a la vista 'welcome'
         return view('welcome', compact('anuncios'));
     }
-
 
     public function show($id)
     {
