@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="my-4">Anuncios Disponibles</h1>
+    <h1 class="my-4">Chihuahua69: acompañantes y escorts</h1>
 
     @if(isset($message))
     <p>{{ $message }}</p>

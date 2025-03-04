@@ -8,8 +8,8 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        // Obtener todos los anuncios con sus imágenes
-        $anuncios = Anuncio::with('imagenes')->get();
+        // Obtener solo los anuncios con estado = 1 (activados) junto con sus imágenes
+        $anuncios = Anuncio::with('imagenes')->where('estado', 1)->get();
 
         // Verificar si hay anuncios
         if ($anuncios->isEmpty()) {
@@ -33,6 +33,7 @@ class WelcomeController extends Controller
         // Pasar los anuncios a la vista 'welcome'
         return view('welcome', compact('anuncios'));
     }
+
 
     public function show($id)
     {

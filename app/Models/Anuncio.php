@@ -13,7 +13,7 @@ class Anuncio extends Model
         'genero', 'edad', 'telefono', 'nacionalidad', 'servicios', 
         'municipio', 'lugar_atiendo', 'horarios_atiendo',
         'medidas', 'altura', 'peso', 'descripcion', 
-        'me_gusta', 'id_usuario'
+        'me_gusta', 'id_usuario', 'estado'
     ];
 
     // Relación con las imágenes

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Anuncio;
@@ -41,25 +42,25 @@ class AnuncioController extends Controller
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
+
         $request->merge(['id_usuario' => Auth::id()]);
-    
+
         $anuncio = Anuncio::create($request->all());
-    
+
         // Subimos las imágenes
         if ($request->hasFile('imagenes')) {
             $imagenes = $request->file('imagenes');
             $rutaDirectorio = 'anuncios/' . $anuncio->id;
-    
+
             $isPrincipalSet = false;
-    
+
             foreach ($imagenes as $imagen) {
                 $ruta = $imagen->store($rutaDirectorio, 'public');
-    
+
                 // Si aún no hemos asignado una imagen como principal, la primera imagen será la principal
                 $principal = $isPrincipalSet ? null : 1;
                 $isPrincipalSet = true;
-    
+
                 Imagen::create([
                     'id_anuncio' => $anuncio->id,
                     'ruta' => $ruta,
@@ -67,11 +68,11 @@ class AnuncioController extends Controller
                 ]);
             }
         }
-    
+
         return redirect()->route('anuncios.index');
     }
-    
-    
+
+
 
     public function edit(Anuncio $anuncio)
     {
@@ -94,15 +95,16 @@ class AnuncioController extends Controller
             'peso' => 'string',
             'descripcion' => 'string',
             'me_gusta' => 'integer',
+            'estado' => 'required|integer|in:1,2', // Validación del estado
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'eliminar_imagenes' => 'nullable|array',
             'eliminar_imagenes.*' => 'exists:imagenes,id',
         ]);
-    
+
         // Actualizar el anuncio
         $anuncio->update($request->all());
-    
+
         // Eliminar imágenes seleccionadas
         if ($request->has('eliminar_imagenes')) {
             foreach ($request->eliminar_imagenes as $imagenId) {
@@ -113,32 +115,32 @@ class AnuncioController extends Controller
                 }
             }
         }
-    
+
         // Marcar como principal la imagen seleccionada
         if ($request->has('imagen_principal')) {
             // Establecer principal en null para todas las imágenes
             Imagen::where('id_anuncio', $anuncio->id)->update(['principal' => null]);
-    
+
             // Establecer la imagen seleccionada como principal
             $imagenPrincipal = Imagen::find($request->imagen_principal);
             if ($imagenPrincipal) {
                 $imagenPrincipal->update(['principal' => 1]);
             }
         }
-    
+
         // Subir nuevas imágenes
         if ($request->hasFile('imagenes')) {
             $imagenes = $request->file('imagenes');
             $rutaDirectorio = 'anuncios/' . $anuncio->id;
-    
+
             $isPrincipalSet = false;
-    
+
             foreach ($imagenes as $imagen) {
                 $ruta = $imagen->store($rutaDirectorio, 'public');
-                
+
                 $principal = $isPrincipalSet ? null : 1;
                 $isPrincipalSet = true;
-    
+
                 Imagen::create([
                     'id_anuncio' => $anuncio->id,
                     'ruta' => $ruta,
@@ -146,11 +148,11 @@ class AnuncioController extends Controller
                 ]);
             }
         }
-    
+
         return redirect()->route('anuncios.index');
     }
-    
-    
+
+
 
     public function destroy(Anuncio $anuncio)
     {
