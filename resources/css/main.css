@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+/* Fondo negro para toda la página */
+body {
+    background-color: #000000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Color de los encabezados */
+h1, h2, h3, h4, h5, h6 {
+    color: #ff66c5;
+    font-family: 'Anton', sans-serif;
+    font-size: 25px;
+}
+
+/* Links blancos con efecto */
+a {
+    color: #fdd1ef;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff66c5;
+    text-decoration: underline;
+}
+
+/* Mejor espaciado para los contenedores */
+.container {
+   max-width: 70vw;
+}
+img.logo {
+    height: 60px;
+}
+
+nav.dark\:bg-gray-800.border-b.border-gray-100.dark\:border-gray-700 {
+    border: none;
+    margin:20px;
+    margin-bottom: 40px;
+}
+
+
