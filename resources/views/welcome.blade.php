@@ -12,10 +12,10 @@
                     <input type="text" name="genero" class="form-control" placeholder="Género" value="{{ request()->genero }}">
                 </div>
                 <div class="col">
-                    <input type="number" name="edad" class="form-control" placeholder="Edad" value="{{ request()->edad }}">
+                    <input type="text" name="nacionalidad" class="form-control" placeholder="Nacionalidad" value="{{ request()->nacionalidad }}">
                 </div>
                 <div class="col">
-                    <input type="text" name="nacionalidad" class="form-control" placeholder="Nacionalidad" value="{{ request()->nacionalidad }}">
+                    <input type="text" name="precio" class="form-control" placeholder="Precio" value="{{ request()->precio }}">
                 </div>
                 <div class="col">
                     <input type="text" name="servicios" class="form-control" placeholder="Servicios" value="{{ request()->servicios }}">
