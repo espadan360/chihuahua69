@@ -34,7 +34,7 @@
         <p><strong>Edad:</strong> {{ $anuncio->edad }} años</p>
         <p><strong>Teléfono:</strong> {{ $anuncio->telefono }}</p>
         <p><strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}</p>
-        <p><strong>Servicios:</strong> {{ $anuncio->servicios }}</p>
+        <p><strong>Servicios:</strong> {{ $anuncio->servicios->pluck('nombre_servicio')->join(', ') }}</p>
         <p><strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }}</p>
         <p><strong>Lugar de atención:</strong> {{ $anuncio->lugar_atiendo }}</p>
         <p><strong>Horarios de atención:</strong> {{ $anuncio->horarios_atiendo }}</p>
@@ -42,6 +42,7 @@
         <p><strong>Medidas:</strong> {{ $anuncio->medidas }}</p>
         <p><strong>Altura:</strong> {{ $anuncio->altura }}</p>
         <p><strong>Peso:</strong> {{ $anuncio->peso }}</p>
+        <p><strong>Fuma:</strong> {{ $anuncio->fumas == 1 ? 'Sí' : 'No' }}</p>
     </div>
 </div>
 @endsection

@@ -8,6 +8,15 @@
         @csrf
         @method('PUT')
 
+        <!-- Nombre -->
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre', $anuncio->nombre) }}">
+            @error('nombre')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
         <!-- genero -->
         <div class="form-group">
             <label for="genero">Genero</label>
@@ -33,6 +42,19 @@
             @enderror
         </div>
 
+        <!-- Campo Fumas en Edición -->
+        <div class="form-group">
+            <label for="fumas">¿Fumas?</label>
+            <select class="form-control @error('fumas') is-invalid @enderror" id="fumas" name="fumas" required>
+                <option value="1" {{ (old('fumas', $anuncio->fumas) == '1') ? 'selected' : '' }}>Sí</option>
+                <option value="0" {{ (old('fumas', $anuncio->fumas) == '0') ? 'selected' : '' }}>No</option>
+            </select>
+            @error('fumas')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+
         <!-- Teléfono -->
         <div class="form-group">
             <label for="telefono">Teléfono</label>
@@ -44,11 +66,12 @@
 
         <div class="form-group">
             <label for="genero">Precio</label>
-            <input type="text" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{ old('precio') }}" required>
+            <input type="text" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{ old('precio', $anuncio->precio) }}" required>
             @error('precio')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
 
         <!-- Nacionalidad -->
         <div class="form-group">
@@ -66,14 +89,22 @@
             @enderror
         </div>
 
-        <!-- Servicios -->
-        <div class="form-group">
-            <label for="servicios">Servicios</label>
-            <input type="text" class="form-control @error('servicios') is-invalid @enderror" id="servicios" name="servicios" value="{{ old('servicios', $anuncio->servicios) }}">
-            @error('servicios')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+<!-- Servicios -->
+<div class="form-group">
+    <label for="servicios">Servicios</label>
+    <select class="form-control @error('servicios') is-invalid @enderror" id="servicios" name="servicios[]" multiple>
+        @foreach ($servicios as $servicio)
+            <option value="{{ $servicio->id }}"
+                {{ in_array($servicio->id, $anuncio->servicios->pluck('id')->toArray()) ? 'selected' : '' }}>
+                {{ $servicio->nombre_servicio }}
+            </option>
+        @endforeach
+    </select>
+    @error('servicios')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
 
         <!-- Municipio -->
         <div class="form-group">

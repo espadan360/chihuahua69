@@ -52,11 +52,12 @@
                 @endphp
                 <img src="{{ asset('storage/' . $imagen->ruta) }}" class="card-img-top" alt="Imagen del anuncio">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $anuncio->genero ? $anuncio->genero->nombre_genero : 'No especificada' }}- {{ $anuncio->edad }} años</h5>
+                    <h5 class="card-title">{{ $anuncio->nombre }} </h5>
                     <p class="card-text">
-                    <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}<br>
-                        <strong>Servicios:</strong> {{ $anuncio->servicios }}<br>
-                        <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }}
+                        <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}<br>
+                        <strong>Servicios:</strong> {{ $anuncio->servicios->pluck('nombre_servicio')->join(', ') }}<br>
+                        <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
+                        <strong>Genero: </strong> {{ $anuncio->genero ? $anuncio->genero->nombre_genero : 'No especificada' }}
                     </p>
                 </div>
                 <div class="card-footer text-center">
