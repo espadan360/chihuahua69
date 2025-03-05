@@ -7,39 +7,74 @@
     @if(isset($message))
     <p>{{ $message }}</p>
     @else
-    <form method="GET" action="{{ route('welcome.index') }}">
-        <div class="form-row mb-3">
-            <div class="col">
-                <input type="text" class="form-control" name="municipio" placeholder="Buscar por municipio">
+
+       <!-- Formulario de Filtros -->
+       <form method="GET" action="{{ route('welcome.index') }}">
+        <div class="row">
+            <!-- Filtros principales -->
+            <div class="col-md-3">
+                <label for="genero">Género</label>
+                <select name="genero" class="form-control">
+                    <option value="">Todos</option>
+                    @foreach($generos as $genero)
+                        <option value="{{ $genero->id }}" {{ request('genero') == $genero->id ? 'selected' : '' }}>
+                            {{ $genero->nombre_genero }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
-            <div class="col">
-                <input type="text" class="form-control" name="nacionalidad" placeholder="Buscar por nacionalidad">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" name="servicios" placeholder="Buscar por servicios">
-            </div>
-            <div class="col-auto">
-                <button type="button" class="btn btn-info" onclick="toggleFilters()">Más filtros</button>
+
+            <div class="col-md-3">
+                <label for="municipio">Municipio</label>
+                <select name="municipio" class="form-control">
+                    <option value="">Todos</option>
+                    @foreach($municipios as $municipio)
+                        <option value="{{ $municipio->id }}" {{ request('municipio') == $municipio->id ? 'selected' : '' }}>
+                            {{ $municipio->nombre_municipio }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
-        <div id="additional-filters" style="display:none;">
-            <!-- Agrega aquí tus filtros adicionales -->
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" name="edad" placeholder="Buscar por edad">
+
+        <!-- Sección de filtros adicionales (ocultos por defecto) -->
+        <div id="additional-filters" style="display: none;">
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label for="nacionalidad">Nacionalidad</label>
+                    <select name="nacionalidad" class="form-control">
+                        <option value="">Todas</option>
+                        @foreach($nacionalidades as $nacionalidad)
+                            <option value="{{ $nacionalidad->id }}" {{ request('nacionalidad') == $nacionalidad->id ? 'selected' : '' }}>
+                                {{ $nacionalidad->nombre_nacionalidad }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="col">
-                    <input type="text" class="form-control" name="genero" placeholder="Buscar por género">
+
+                <div class="col-md-3">
+                    <label for="precio_min">Precio Mínimo</label>
+                    <input type="number" name="precio_min" class="form-control" value="{{ request('precio_min') }}">
                 </div>
-                <!-- Más filtros según necesites -->
+
+                <div class="col-md-3">
+                    <label for="precio_max">Precio Máximo</label>
+                    <input type="number" name="precio_max" class="form-control" value="{{ request('precio_max') }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="precio_min">Edad </label>
+                    <input type="string" name="edad" class="form-control" value="{{ request('edad') }}">
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <div class="col">
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </div>
+
+        <!-- Botones de filtrado -->
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <button type="button" class="btn btn-secondary" onclick="toggleFilters()">Ver más filtros</button>
         </div>
     </form>
+
 
     <!-- Contenedor para las tarjetas -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
