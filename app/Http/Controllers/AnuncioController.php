@@ -5,33 +5,39 @@ namespace App\Http\Controllers;
 use App\Models\Anuncio;
 use Illuminate\Http\Request;
 use App\Models\Imagen;
+use App\Models\Nacionalidad;
+use App\Models\Municipio;
+use App\Models\Genero;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Support\Facades\Auth;
 
 class AnuncioController extends Controller
 {
     public function index()
     {
-        $anuncios = Anuncio::where('id_usuario', Auth::id())->get();
+        $anuncios = Anuncio::with('nacionalidad', 'municipio', 'genero')->where('id_usuario', Auth::id())->get();
         return view('anuncios.index', compact('anuncios'));
     }
-
+    
     public function create()
     {
-        return view('anuncios.create');
+        $nacionalidades = Nacionalidad::all(); // Obtener todas las nacionalidades
+        $municipios = Municipio::all();
+        $generos = Genero::all();
+        return view('anuncios.create', compact('nacionalidades', 'municipios', 'generos'));
     }
+    
 
     public function store(Request $request)
     {
         // Validaciones del anuncio
         $request->validate([
-            'genero' => 'string',
+            'id_genero' => 'required|exists:generos,id',  
             'edad' => 'integer',
             'telefono' => 'string',
-            'nacionalidad' => 'string',
+            'id_nacionalidad' => 'required|exists:nacionalidades,id',  
             'servicios' => 'string',
-            'municipio' => 'string',
+            'id_municipio' => 'required|exists:municipios,id',
             'lugar_atiendo' => 'string',
             'horarios_atiendo' => 'string',
             'medidas' => 'string',
@@ -42,6 +48,7 @@ class AnuncioController extends Controller
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
 
         $request->merge(['id_usuario' => Auth::id()]);
 
@@ -76,18 +83,23 @@ class AnuncioController extends Controller
 
     public function edit(Anuncio $anuncio)
     {
-        return view('anuncios.edit', compact('anuncio'));
+        $nacionalidades = Nacionalidad::all(); 
+        $municipios = Municipio::all();
+        $generos = Genero::all();
+
+        return view('anuncios.edit', compact('anuncio', 'nacionalidades', 'municipios', 'generos'));
     }
+    
 
     public function update(Request $request, Anuncio $anuncio)
     {
         $request->validate([
-            'genero' => 'string',
+            'id_genero' => 'required|exists:generos,id',  
             'edad' => 'integer',
             'telefono' => 'string',
-            'nacionalidad' => 'string',
+            'id_nacionalidad' => 'required|exists:nacionalidades,id',
             'servicios' => 'string',
-            'municipio' => 'string',
+            'id_municipio' => 'required|exists:municipios,id',
             'lugar_atiendo' => 'string',
             'horarios_atiendo' => 'string',
             'medidas' => 'string',
@@ -96,12 +108,13 @@ class AnuncioController extends Controller
             'descripcion' => 'string',
             'me_gusta' => 'integer',
             'precio' => 'string',
-            'estado' => 'required|integer|in:1,2', // Validación del estado
+            'estado' => 'required|integer|in:1,2',
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'eliminar_imagenes' => 'nullable|array',
             'eliminar_imagenes.*' => 'exists:imagenes,id',
         ]);
+        
 
         // Actualizar el anuncio
         $anuncio->update($request->all());

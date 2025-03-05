@@ -8,11 +8,18 @@
         @csrf
         @method('PUT')
 
-        <!-- Género -->
+        <!-- genero -->
         <div class="form-group">
-            <label for="genero">Género</label>
-            <input type="text" class="form-control @error('genero') is-invalid @enderror" id="genero" name="genero" value="{{ old('genero', $anuncio->genero) }}">
-            @error('genero')
+            <label for="genero">Genero</label>
+            <select class="form-control @error('id_genero') is-invalid @enderror" id="genero" name="id_genero">
+                @foreach ($generos as $genero)
+                <option value="{{ $genero->id }}"
+                    {{ (old('id_genero', $anuncio->id_genero) == $genero->id) ? 'selected' : '' }}>
+                    {{ $genero->nombre_genero }}
+                </option>
+                @endforeach
+            </select>
+            @error('id_genero')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -46,8 +53,15 @@
         <!-- Nacionalidad -->
         <div class="form-group">
             <label for="nacionalidad">Nacionalidad</label>
-            <input type="text" class="form-control @error('nacionalidad') is-invalid @enderror" id="nacionalidad" name="nacionalidad" value="{{ old('nacionalidad', $anuncio->nacionalidad) }}">
-            @error('nacionalidad')
+            <select class="form-control @error('id_nacionalidad') is-invalid @enderror" id="nacionalidad" name="id_nacionalidad">
+                @foreach ($nacionalidades as $nacionalidad)
+                <option value="{{ $nacionalidad->id }}"
+                    {{ (old('id_nacionalidad', $anuncio->id_nacionalidad) == $nacionalidad->id) ? 'selected' : '' }}>
+                    {{ $nacionalidad->nombre_nacionalidad }}
+                </option>
+                @endforeach
+            </select>
+            @error('id_nacionalidad')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -64,12 +78,18 @@
         <!-- Municipio -->
         <div class="form-group">
             <label for="municipio">Municipio</label>
-            <input type="text" class="form-control @error('municipio') is-invalid @enderror" id="municipio" name="municipio" value="{{ old('municipio', $anuncio->municipio) }}">
-            @error('municipio')
+            <select class="form-control @error('id_municipio') is-invalid @enderror" id="municipio" name="id_municipio">
+                @foreach ($municipios as $municipio)
+                <option value="{{ $municipio->id }}"
+                    {{ (old('id_municipio', $anuncio->id_municipio) == $municipio->id) ? 'selected' : '' }}>
+                    {{ $municipio->nombre_municipio }}
+                </option>
+                @endforeach
+            </select>
+            @error('id_municipio')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
         <!-- Lugar que atiende -->
         <div class="form-group">
             <label for="lugar_atiendo">Lugar que atiende</label>

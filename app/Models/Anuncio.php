@@ -10,10 +10,10 @@ class Anuncio extends Model
     use HasFactory;
 
     protected $fillable = [
-        'genero', 'edad', 'telefono', 'nacionalidad', 'servicios', 
-        'municipio', 'lugar_atiendo', 'horarios_atiendo',
+        'id_genero', 'edad', 'telefono', 'id_nacionalidad', 'servicios', 
+        'id_municipio', 'lugar_atiendo', 'horarios_atiendo',
         'medidas', 'altura', 'peso', 'descripcion', 
-        'me_gusta', 'id_usuario', 'estado', 'precio'
+        'me_gusta', 'id_usuario', 'estado', 'precio', 'nombre'
     ];
 
     // Relación con las imágenes
@@ -21,4 +21,19 @@ class Anuncio extends Model
     {
         return $this->hasMany(Imagen::class, 'id_anuncio'); // Aquí se establece la relación
     }
+    public function nacionalidad()
+{
+    return $this->belongsTo(Nacionalidad::class, 'id_nacionalidad');
+}
+
+public function municipio()
+{
+    return $this->belongsTo(Municipio::class, 'id_municipio');
+}
+
+public function genero()
+{
+    return $this->belongsTo(Genero::class, 'id_genero');
+}
+
 }

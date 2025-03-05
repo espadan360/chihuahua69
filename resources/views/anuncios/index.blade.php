@@ -20,11 +20,11 @@
         <tbody>
             @foreach($anuncios as $anuncio)
             <tr>
-                <td>{{ $anuncio->genero }}</td>
+            <td>{{ $anuncio->genero->nombre_genero ?? ' ' }}</td>
                 <td>{{ $anuncio->edad }}</td>
-                <td>{{ $anuncio->nacionalidad }}</td>
+                <td>{{ $anuncio->nacionalidad->nombre_nacionalidad ?? ' ' }}</td>
                 <td>{{ $anuncio->servicios }}</td>
-                <td>{{ $anuncio->municipio }}</td>
+                <td>{{ $anuncio->municipio->nombre_municipio ?? ' ' }}</td>
                 <td>
                     <a href="{{ route('anuncios.edit', $anuncio) }}" class="btn btn-warning btn-sm">Editar</a>
                     <form action="{{ route('anuncios.destroy', $anuncio) }}" method="POST" style="display: inline-block;">

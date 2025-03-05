@@ -30,12 +30,12 @@
 
     <div class="mt-4">
         <h4>Información del Anuncio</h4>
-        <p><strong>Género:</strong> {{ $anuncio->genero }}</p>
+        <p><strong>Genero:</strong> {{ $anuncio->genero ? $anuncio->genero->nombre_genero : 'No especificada' }}</p>
         <p><strong>Edad:</strong> {{ $anuncio->edad }} años</p>
         <p><strong>Teléfono:</strong> {{ $anuncio->telefono }}</p>
-        <p><strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad }}</p>
+        <p><strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}</p>
         <p><strong>Servicios:</strong> {{ $anuncio->servicios }}</p>
-        <p><strong>Municipio:</strong> {{ $anuncio->municipio }}</p>
+        <p><strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }}</p>
         <p><strong>Lugar de atención:</strong> {{ $anuncio->lugar_atiendo }}</p>
         <p><strong>Horarios de atención:</strong> {{ $anuncio->horarios_atiendo }}</p>
         <p><strong>Descripción:</strong> {{ $anuncio->descripcion }}</p>
