@@ -51,7 +51,7 @@ class AnuncioController extends Controller
             'me_gusta' => 'integer',
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'servicios' => 'required|array', 
+            'servicios' => 'required|array',
             'servicios.*' => 'exists:servicios,id',
         ]);
 
@@ -117,12 +117,11 @@ class AnuncioController extends Controller
             'descripcion' => 'string',
             'me_gusta' => 'integer',
             'precio' => 'string',
-            'estado' => 'required|integer|in:1,2',
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'eliminar_imagenes' => 'nullable|array',
             'eliminar_imagenes.*' => 'exists:imagenes,id',
-            'servicios' => 'required|array', 
+            'servicios' => 'required|array',
             'servicios.*' => 'exists:servicios,id',
         ]);
 
@@ -176,6 +175,13 @@ class AnuncioController extends Controller
         return redirect()->route('anuncios.index');
     }
 
+    public function cambiarEstado(Anuncio $anuncio)
+    {
+        $newEstado = ($anuncio->estado == 1) ? 2 : 1;
+        $anuncio->update(['estado' => $newEstado]);
+
+        return redirect()->route('anuncios.index');
+    }
 
 
     public function destroy(Anuncio $anuncio)

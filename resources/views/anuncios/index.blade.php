@@ -29,6 +29,12 @@
                 <td>{{ $anuncio->municipio->nombre_municipio ?? ' ' }}</td>
                 <td>
                     <a href="{{ route('anuncios.edit', $anuncio) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ route('anuncios.cambiarEstado', $anuncio) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        <button type="submit" class="btn btn-info btn-sm">
+                            {{ $anuncio->estado == 1 ? 'Desactivar' : 'Activar' }}
+                        </button>
+                    </form>
                     <form action="{{ route('anuncios.destroy', $anuncio) }}" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')

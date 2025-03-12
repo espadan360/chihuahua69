@@ -206,19 +206,6 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <!-- El campo 'id_usuario' no debe ser editable por el usuario -->
-
-        <!-- Estado -->
-        <div class="form-group">
-            <label for="estado">Estado</label>
-            <select class="form-control @error('estado') is-invalid @enderror" id="estado" name="estado">
-                <option value="1" {{ old('estado', $anuncio->estado) == 1 ? 'selected' : '' }}>Activado</option>
-                <option value="2" {{ old('estado', $anuncio->estado) == 2 ? 'selected' : '' }}>Desactivado</option>
-            </select>
-            @error('estado')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
 
         <input type="hidden" name="id_usuario" value="{{ $anuncio->id_usuario }}">
 

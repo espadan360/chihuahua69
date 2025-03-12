@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('anuncios.index');
     })->name('dashboard');
 
+    Route::post('anuncios/{anuncio}/cambiar-estado', [AnuncioController::class, 'cambiarEstado'])->name('anuncios.cambiarEstado');
     // Rutas para anuncios
     Route::resource('anuncios', AnuncioController::class);
 

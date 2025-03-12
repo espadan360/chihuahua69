@@ -16,14 +16,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Links blancos con efecto */
-a {
+p {
     color: #fdd1ef;
     text-decoration: none;
 }
 
-a:hover {
-    color: #ff66c5;
-    text-decoration: underline;
+a {
+    color: #b71d86;
+    direction: none;
 }
 
 /* Mejor espaciado para los contenedores */
@@ -40,4 +40,7 @@ nav.dark\:bg-gray-800.border-b.border-gray-100.dark\:border-gray-700 {
     margin-bottom: 40px;
 }
 
+.card-text{
+    color: #000000;
+}
 
