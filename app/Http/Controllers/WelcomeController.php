@@ -27,7 +27,8 @@ class WelcomeController extends Controller
             ->when($request->filled('genero'), fn($query) => $query->where('id_genero', $request->genero))
             ->when($request->filled('municipio'), fn($query) => $query->where('id_municipio', $request->municipio))
             ->when($request->filled('nacionalidad'), fn($query) => $query->where('id_nacionalidad', $request->nacionalidad))
-            ->when($request->filled('edad'), fn($query) => $query->where('edad', $request->edad))
+            ->when($request->filled('edad_min'), fn($query) => $query->where('edad', '>=', $request->edad_min))
+            ->when($request->filled('edad_max'), fn($query) => $query->where('edad', '<=', $request->edad_max))
             ->when($request->filled('telefono'), fn($query) => $query->where('telefono', 'like', '%' . $request->telefono . '%'))
             ->when($request->filled('lugar_atiendo'), fn($query) => $query->where('lugar_atiendo', 'like', '%' . $request->lugar_atiendo . '%'))
             ->when($request->filled('horarios_atiendo'), fn($query) => $query->where('horarios_atiendo', 'like', '%' . $request->horarios_atiendo . '%'))
@@ -41,11 +42,9 @@ class WelcomeController extends Controller
             ->when($request->filled('precio_max'), fn($query) => $query->where('precio', '<=', $request->precio_max))
             ->when($request->filled('servicio'), function ($query) use ($request) {
                 $query->whereHas('servicios', function ($q) use ($request) {
-                    $q->where('servicios.id', $request->servicio); // Se asegura de que el anuncio tenga este servicio
+                    $q->where('servicios.id', $request->servicio);
                 });
             })
-
-
             ->get();
 
         // Procesar las imágenes para cada anuncio
@@ -65,6 +64,7 @@ class WelcomeController extends Controller
         // Pasar los datos a la vista
         return view('welcome', compact('anuncios', 'generos', 'municipios', 'nacionalidades', 'servicios'));
     }
+
 
 
     public function show($id)

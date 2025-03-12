@@ -53,8 +53,13 @@
                 </div>
 
                 <div class="col-md-3">
-                    <label for="edad">Edad</label>
-                    <input type="string" name="edad" class="form-control" value="{{ request('edad') }}">
+                    <label for="edad_min">Edad Mínima</label>
+                    <input type="number" name="edad_min" class="form-control" value="{{ request('edad_min') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="edad_max">Edad Máxima</label>
+                    <input type="number" name="edad_max" class="form-control" value="{{ request('edad_max') }}">
                 </div>
 
                 <div class="col-md-3">
@@ -98,12 +103,12 @@
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">Filtrar</button>
             <button type="button" class="btn btn-secondary" onclick="toggleFilters()">Más filtros</button>
+            <a href="{{ route('welcome.index') }}" class="btn btn-danger">Eliminar filtros</a>
         </div>
     </form>
 
     <p>Escorts en Chihuahua estado disponibles ahora mismo para encuentro:</p>
 
-    <!-- Contenedor para las tarjetas -->
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach($anuncios as $anuncio)
@@ -118,10 +123,10 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $anuncio->nombre }} </h5>
                         <p class="card-text">
+                            {{ $anuncio->descripcion }}<br>
                             <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}<br>
                             <strong>Servicios:</strong> {{ $anuncio->servicios->pluck('nombre_servicio')->join(', ') }}<br>
                             <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
-                            <strong>Genero: </strong> {{ $anuncio->genero ? $anuncio->genero->nombre_genero : 'No especificada' }}
                         </p>
                     </div>
                     <div class="card-footer text-center">
