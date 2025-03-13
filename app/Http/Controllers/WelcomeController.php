@@ -41,10 +41,12 @@ class WelcomeController extends Controller
             ->when($request->filled('precio_min'), fn($query) => $query->where('precio', '>=', $request->precio_min))
             ->when($request->filled('precio_max'), fn($query) => $query->where('precio', '<=', $request->precio_max))
             ->when($request->filled('servicio'), function ($query) use ($request) {
-                $query->whereHas('servicios', function ($q) use ($request) {
-                    $q->where('servicios.id', $request->servicio);
+                $serviciosSeleccionados = explode(',', $request->servicio); // Obtener los IDs de los servicios seleccionados
+                $query->whereHas('servicios', function ($q) use ($serviciosSeleccionados) {
+                    $q->whereIn('servicios.id', $serviciosSeleccionados);
                 });
             })
+            
             ->get();
 
         // Procesar las imágenes para cada anuncio
