@@ -1,6 +1,8 @@
 @extends('layouts.appPublic')
 
 @section('content')
+
+@vite(['resources/css/anuncios.css'])
 <div class="container">
     <h1 class="my-4">Chihuahua69: acompañantes y escorts</h1>
 
@@ -109,35 +111,34 @@
 
     <p>Escorts en Chihuahua estado disponibles ahora mismo para encuentro:</p>
 
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach($anuncios as $anuncio)
-        <div class="col">
-            <a href="{{ route('anuncio', ['id_anuncio' => $anuncio->id]) }}" class="">
-                <!-- Tarjeta de anuncio -->
-                <div class="card h-100">
-                    @php
+    <div class="row row-cols-1 row-cols-md-3 g-4 anuncioIndividual">
+    @foreach($anuncios as $anuncio)
+    <div class="col">
+        <a href="{{ route('anuncio', ['id_anuncio' => $anuncio->id]) }}">
+            <!-- Tarjeta de anuncio -->
+            <div class="card h-100">
+                @php
                     $imagen = $anuncio->imagenPrincipal ? $anuncio->imagenPrincipal : (object)['ruta' => 'https://via.placeholder.com/300x200'];
-                    @endphp
-                    <img src="{{ asset('storage/' . $imagen->ruta) }}" class="card-img-top" alt="Imagen del anuncio">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $anuncio->nombre }} </h5>
-                        <p class="card-text">
-                            {{ $anuncio->descripcion }}<br>
-                            <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}<br>
-                            <strong>Servicios:</strong> {{ $anuncio->servicios->pluck('nombre_servicio')->join(', ') }}<br>
-                            <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
-                        </p>
-                    </div>
-                    <div class="card-footer text-center">
-                        {{ $anuncio->telefono }}
-                    </div>
+                @endphp
+                <img src="{{ asset('storage/' . $imagen->ruta) }}" class="card-img-top" alt="Imagen del anuncio">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $anuncio->nombre }}</h5>
+                    <p class="card-text">
+                        {{ $anuncio->descripcion }}<br>
+                        <strong>Servicios:</strong> {{ $anuncio->servicios->pluck('nombre_servicio')->join(', ') }}<br>
+                        <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
+                        <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}
+                    </p>
                 </div>
-            </a>
-        </div>
-
-        @endforeach
+                <div class="card-footer text-center">
+                    {{ $anuncio->telefono }}
+                </div>
+            </div>
+        </a>
     </div>
+    @endforeach
+</div>
+
 
     @endif
 </div>

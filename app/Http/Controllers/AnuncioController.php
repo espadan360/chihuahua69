@@ -126,7 +126,7 @@ class AnuncioController extends Controller
         ]);
 
         $anuncio->update($request->except('servicios'));
-        $anuncio->servicios()->sync($request->servicios); // Actualizar servicios en la tabla pivote
+        $anuncio->servicios()->sync($request->servicios); 
 
         // Eliminar imágenes seleccionadas
         if ($request->has('eliminar_imagenes')) {
