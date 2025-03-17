@@ -122,7 +122,7 @@
                 <!-- Tarjeta de anuncio -->
                 <div class="card h-100">
                     @php
-                    $imagen = $anuncio->imagenPrincipal ? $anuncio->imagenPrincipal : (object)['ruta' => 'https://via.placeholder.com/300x200'];
+                    $imagen = $anuncio->imagenPrincipal ? $anuncio->imagenPrincipal : (object)['ruta' => '/'];
                     @endphp
                     <img src="{{ asset('storage/' . $imagen->ruta) }}" class="card-img-top" alt="Imagen del anuncio">
                     <div class="card-body">
@@ -131,7 +131,8 @@
                             {{ $anuncio->descripcion }}<br>
                             <strong>Servicios:</strong> {{ $anuncio->servicios->pluck('nombre_servicio')->join(', ') }}<br>
                             <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
-                            <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }}
+                            <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }} <br>
+                            <strong>Tarifa por hora:</strong> {{ $anuncio->tarifa_hora }}€/hora<br>
                         </p>
                     </div>
                     <div class="card-footer text-center">

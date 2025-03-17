@@ -57,7 +57,7 @@ class WelcomeController extends Controller
                 $imagenPrincipal = $anuncio->imagenes->random();
             } elseif (!$imagenPrincipal) {
                 // Imagen por defecto si no tiene imágenes
-                $imagenPrincipal = (object)['ruta' => 'https://via.placeholder.com/300x200'];
+                $imagenPrincipal = (object)['ruta' => '/ImgLogoDefecto.png'];
             }
 
             $anuncio->imagenPrincipal = $imagenPrincipal;
@@ -68,18 +68,18 @@ class WelcomeController extends Controller
     }
 
 
-
     public function show($id)
     {
         // Obtener el anuncio con sus imágenes y relaciones
         $anuncio = Anuncio::with(['imagenes', 'nacionalidad', 'municipio', 'genero'])->findOrFail($id);
-
+    
         // Verificar si el anuncio tiene imágenes
-        if ($anuncio->imagenes->isEmpty()) {
-            return redirect()->route('welcome')->with('message', 'Este anuncio no tiene imágenes.');
-        }
-
-        // Pasar el anuncio a la vista de detalles
-        return view('anuncio', compact('anuncio'));
+        $imagenPrincipal = $anuncio->imagenes->isEmpty() 
+                            ? (object)['ruta' => '/ImgAnuncio.png'] // Ruta por defecto si no tiene imágenes
+                            : $anuncio->imagenes->first(); // Si tiene imágenes, obtener la primera
+    
+        // Pasar el anuncio y la imagen principal a la vista de detalles
+        return view('anuncio', compact('anuncio', 'imagenPrincipal'));
     }
+    
 }

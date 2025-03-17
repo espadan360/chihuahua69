@@ -50,7 +50,7 @@ class AnuncioController extends Controller
             'descripcion' => 'string',
             'me_gusta' => 'integer',
             'imagenes' => 'nullable|array',
-            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'servicios' => 'required|array',
             'servicios.*' => 'exists:servicios,id',
         ]);
@@ -86,8 +86,6 @@ class AnuncioController extends Controller
         return redirect()->route('anuncios.index');
     }
 
-
-
     public function edit(Anuncio $anuncio)
     {
         $nacionalidades = Nacionalidad::all();
@@ -97,7 +95,6 @@ class AnuncioController extends Controller
 
         return view('anuncios.edit', compact('anuncio', 'nacionalidades', 'municipios', 'generos', 'servicios'));
     }
-
 
     public function update(Request $request, Anuncio $anuncio)
     {
@@ -118,7 +115,7 @@ class AnuncioController extends Controller
             'me_gusta' => 'integer',
             'tarifa_general' => 'string',
             'imagenes' => 'nullable|array',
-            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'eliminar_imagenes' => 'nullable|array',
             'eliminar_imagenes.*' => 'exists:imagenes,id',
             'servicios' => 'required|array',

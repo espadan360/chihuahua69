@@ -1,12 +1,16 @@
 @extends('layouts.appPublic')
-
+<style>
+    img.d-block.w-100 {
+        height: 55vh !important;
+    }
+</style>
 @section('content')
 <div class="container">
-    <h1 class="my-4">Detalles del Anuncio</h1>
+    <h1 class="my-4">Más sobre el anuncio</h1>
 
     <!-- Verificación si el anuncio tiene imágenes -->
     @if($anuncio->imagenes->isEmpty())
-    <p>No hay imágenes disponibles para este anuncio.</p>
+    <img src="{{ asset('storage/' . $imagenPrincipal->ruta) }}" class="d-block w-100" alt="Imagen del anuncio">
     @else
     <!-- Slider de imágenes -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -29,7 +33,6 @@
     @endif
 
     <div class="mt-4">
-        <h4>Información del Anuncio</h4>
         <p><strong>Genero:</strong> {{ $anuncio->genero ? $anuncio->genero->nombre_genero : 'No especificada' }}</p>
         <p><strong>Edad:</strong> {{ $anuncio->edad }} años</p>
         <p><strong>Teléfono:</strong> {{ $anuncio->telefono }}</p>
