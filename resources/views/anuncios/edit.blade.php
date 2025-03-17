@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@vite(['resources/css/mainAnuncio.css'])
 @section('content')
 <div class="container">
     <h1 class="my-4">Editar Anuncio</h1>
@@ -96,22 +96,21 @@
             @enderror
         </div>
 
-<!-- Servicios -->
-<div class="form-group">
-    <label for="servicios">Servicios</label>
-    <select class="form-control @error('servicios') is-invalid @enderror" id="servicios" name="servicios[]" multiple>
-        @foreach ($servicios as $servicio)
-            <option value="{{ $servicio->id }}"
-                {{ in_array($servicio->id, $anuncio->servicios->pluck('id')->toArray()) ? 'selected' : '' }}>
-                {{ $servicio->nombre_servicio }}
-            </option>
-        @endforeach
-    </select>
-    @error('servicios')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-</div>
-
+        <!-- Servicios -->
+        <div class="form-group">
+            <label for="servicios">Servicios</label>
+            <select class="form-control @error('servicios') is-invalid @enderror" id="servicios" name="servicios[]" multiple>
+                @foreach ($servicios as $servicio)
+                <option value="{{ $servicio->id }}"
+                    {{ in_array($servicio->id, $anuncio->servicios->pluck('id')->toArray()) ? 'selected' : '' }}>
+                    {{ $servicio->nombre_servicio }}
+                </option>
+                @endforeach
+            </select>
+            @error('servicios')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
         <!-- Municipio -->
         <div class="form-group">

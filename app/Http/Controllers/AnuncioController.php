@@ -17,8 +17,6 @@ class AnuncioController extends Controller
     public function index()
     {
         $anuncios = Anuncio::with('nacionalidad', 'municipio', 'genero', 'servicios', 'imagenes')->where('id_usuario', Auth::id())->get();
-    
-        // Asegurarnos de que cada anuncio tenga una imagen principal o la predeterminada
         foreach ($anuncios as $anuncio) {
             $imagenPrincipal = $anuncio->imagenes->firstWhere('principal', 1);
             
