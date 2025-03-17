@@ -26,9 +26,10 @@ class Anuncio extends Model
         'me_gusta',
         'id_usuario',
         'estado',
-        'precio',
+        'tarifa_general',
         'nombre',
-        'fumas'
+        'fumas',
+        'tarifa_hora'
     ];
 
     // Relación con las imágenes

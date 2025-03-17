@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@vite(['resources/css/mainAnuncio.css'])
 @section('content')
 <div class="container">
     <h1 class="my-4">Crear Nuevo Anuncio</h1>
@@ -59,9 +59,17 @@
         </div>
 
         <div class="form-group">
-            <label for="precio">Precio</label>
-            <input type="text" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{ old('precio') }}" required>
-            @error('precio')
+            <label for="tarifa_hora">Tarifa hora</label>
+            <input type="text" class="form-control @error('tarifa_hora') is-invalid @enderror" id="tarifa_hora" name="tarifa_hora" value="{{ old('tarifa_hora') }}" required>
+            @error('tarifa_hora')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        <div class="form-group">
+            <label for="tarifa_general">Otras tarifas</label>
+            <input type="text" class="form-control @error('tarifa_general') is-invalid @enderror" id="tarifa_general" name="tarifa_general" value="{{ old('tarifa_general') }}" required>
+            @error('tarifa_general')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

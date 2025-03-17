@@ -1,0 +1,8 @@
+.servicio-box {
+    transition: background-color 0.3s ease;
+}
+
+.servicio-box.selected {
+    background-color: #007bff;
+    color: white;
+}

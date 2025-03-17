@@ -78,12 +78,12 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="precio_min">Precio Mínimo</label>
+                    <label for="precio_min">Tarifa mínimo hora</label>
                     <input type="number" name="precio_min" class="form-control" value="{{ request('precio_min') }}">
                 </div>
 
                 <div class="col-md-3">
-                    <label for="precio_max">Precio Máximo</label>
+                    <label for="precio_max">tarifa máximo hora</label>
                     <input type="number" name="precio_max" class="form-control" value="{{ request('precio_max') }}">
                 </div>
 

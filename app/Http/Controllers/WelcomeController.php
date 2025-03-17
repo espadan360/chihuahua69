@@ -38,8 +38,8 @@ class WelcomeController extends Controller
             ->when($request->filled('descripcion'), fn($query) => $query->where('descripcion', 'like', '%' . $request->descripcion . '%'))
             ->when($request->filled('me_gusta'), fn($query) => $query->where('me_gusta', $request->me_gusta))
             ->when($request->filled('fumas'), fn($query) => $query->where('fumas', (int) $request->fumas))
-            ->when($request->filled('precio_min'), fn($query) => $query->where('precio', '>=', $request->precio_min))
-            ->when($request->filled('precio_max'), fn($query) => $query->where('precio', '<=', $request->precio_max))
+            ->when($request->filled('precio_min'), fn($query) => $query->where('tarifa_hora', '>=', $request->precio_min))
+            ->when($request->filled('precio_max'), fn($query) => $query->where('tarifa_hora', '<=', $request->precio_max))
             ->when($request->filled('servicio'), function ($query) use ($request) {
                 $serviciosSeleccionados = explode(',', $request->servicio); // Obtener los IDs de los servicios seleccionados
                 $query->whereHas('servicios', function ($q) use ($serviciosSeleccionados) {

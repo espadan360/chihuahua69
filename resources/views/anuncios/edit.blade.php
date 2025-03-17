@@ -65,13 +65,20 @@
         </div>
 
         <div class="form-group">
-            <label for="genero">Precio</label>
-            <input type="text" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{ old('precio', $anuncio->precio) }}" required>
-            @error('precio')
+            <label for="tarifa_hora">Tarifa hora</label>
+            <input type="text" class="form-control @error('tarifa_hora') is-invalid @enderror" id="tarifa_hora" name="tarifa_hora" value="{{ old('tarifa_hora', $anuncio->tarifa_hora) }}" required>
+            @error('tarifa_hora')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
+        <div class="form-group">
+            <label for="tarifa_general">Otras tarifas</label>
+            <textarea class="form-control @error('tarifa_general') is-invalid @enderror" id="tarifa_general" name="tarifa_general">{{ old('tarifa_general', $anuncio->tarifa_general) }}</textarea>
+            @error('tarifa_general')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
         <!-- Nacionalidad -->
         <div class="form-group">
