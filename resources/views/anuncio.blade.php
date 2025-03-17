@@ -1,6 +1,6 @@
 @extends('layouts.appPublic')
 <style>
-    img.d-block.w-100 {
+    .imgDefecto img.d-block.w-100 {
         height: 55vh !important;
     }
 </style>
@@ -10,7 +10,7 @@
 
     <!-- Verificación si el anuncio tiene imágenes -->
     @if($anuncio->imagenes->isEmpty())
-    <img src="{{ asset('storage/' . $imagenPrincipal->ruta) }}" class="d-block w-100" alt="Imagen del anuncio">
+    <img src="{{ asset('storage/' . $imagenPrincipal->ruta) }}" class="d-block w-100 imgDefecto" alt="Imagen del anuncio">
     @else
     <!-- Slider de imágenes -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">

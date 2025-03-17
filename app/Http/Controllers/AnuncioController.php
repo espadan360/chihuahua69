@@ -16,9 +16,24 @@ class AnuncioController extends Controller
 {
     public function index()
     {
-        $anuncios = Anuncio::with('nacionalidad', 'municipio', 'genero', 'servicios')->where('id_usuario', Auth::id())->get();
+        $anuncios = Anuncio::with('nacionalidad', 'municipio', 'genero', 'servicios', 'imagenes')->where('id_usuario', Auth::id())->get();
+    
+        // Asegurarnos de que cada anuncio tenga una imagen principal o la predeterminada
+        foreach ($anuncios as $anuncio) {
+            $imagenPrincipal = $anuncio->imagenes->firstWhere('principal', 1);
+            
+            // Si no tiene imagen principal, asignar una imagen por defecto
+            if (!$imagenPrincipal && $anuncio->imagenes->isEmpty()) {
+                $imagenPrincipal = (object)['ruta' => '/LogoChihuahua.png'];
+            }
+    
+            // Asignamos la imagen principal (o la predeterminada) al anuncio
+            $anuncio->imagenPrincipal = $imagenPrincipal;
+        }
+    
         return view('anuncios.index', compact('anuncios'));
     }
+    
 
     public function create()
     {

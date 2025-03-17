@@ -9,6 +9,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+            <th>Imagen</th>
                 <th>Nombre</th>
                 <th>Género</th>
                 <th>Edad</th>
@@ -21,6 +22,13 @@
         <tbody>
             @foreach($anuncios as $anuncio)
             <tr>
+                 <td>
+                    @if(isset($anuncio->imagenPrincipal->ruta) && $anuncio->imagenPrincipal->ruta !== 'public/storage/LogoChihuahua.png')
+                        <img src="{{ asset('storage/' . $anuncio->imagenPrincipal->ruta) }}" class="img-thumbnail" alt="Imagen del anuncio" width="100">
+                    @else
+                        ImgLogoDefecto <!-- Mensaje predeterminado si no tiene imagen -->
+                    @endif
+                </td>
                 <td>{{ $anuncio->nombre }}</td>
                 <td>{{ $anuncio->genero->nombre_genero ?? ' ' }}</td>
                 <td>{{ $anuncio->edad }}</td>
