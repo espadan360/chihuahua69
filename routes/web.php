@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AdministracionController;
+
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 Route::get('/anuncio/{id_anuncio}', [WelcomeController::class, 'show'])->name('anuncio');
@@ -24,6 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    
+Route::prefix('administracion')->middleware('auth')->group(function() {
+    Route::get('/', [AdministracionController::class, 'index'])->name('administracion.index');
+    Route::get('/permitir/{anuncio}', [AdministracionController::class, 'permitir'])->name('administracion.permitir');
+    Route::get('/denegar/{anuncio}', [AdministracionController::class, 'denegar'])->name('administracion.denegar');
+});
 });
 
 require __DIR__ . '/auth.php';

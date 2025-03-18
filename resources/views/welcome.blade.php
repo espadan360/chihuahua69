@@ -101,7 +101,6 @@
                     </div>
                     <input type="hidden" name="servicio" id="servicio-input" value="{{ request('servicio') }}">
                 </div>
-
             </div>
         </div>
 
@@ -143,8 +142,6 @@
         </div>
         @endforeach
     </div>
-
-
     @endif
 </div>
 @endsection
