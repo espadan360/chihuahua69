@@ -205,7 +205,7 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const selectedServices = @json(old('servicios', $anuncio - > servicios - > pluck('id') - > toArray()));
+        const selectedServices = @json(old('servicios', $anuncio->servicios->pluck('id')->toArray()));
 
         selectedServices.forEach(serviceId => {
             const box = document.querySelector(`.servicio-box[data-id='${serviceId}']`);
