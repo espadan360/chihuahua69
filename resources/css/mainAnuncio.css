@@ -1,11 +1,17 @@
-
-
 .servicio-box {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .servicio-box.selected {
-    background-color: #007bff;
-    color: white;
+    background-color: #d3f9d8; /* Color cuando la caja está seleccionada */
 }
 
+.servicio-box:hover {
+    background-color: #f0f0f0;
+}

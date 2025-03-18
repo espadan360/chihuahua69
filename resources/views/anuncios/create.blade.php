@@ -65,7 +65,7 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        
+
         <div class="form-group">
             <label for="tarifa_general">Otras tarifas</label>
             <input type="text" class="form-control @error('tarifa_general') is-invalid @enderror" id="tarifa_general" name="tarifa_general" value="{{ old('tarifa_general') }}" required>
@@ -89,14 +89,16 @@
             @enderror
         </div>
 
-        <!-- Servicios -->
         <div class="form-group">
             <label for="servicios">Servicios</label>
-            <select class="form-control @error('servicios') is-invalid @enderror" id="servicios" name="servicios[]" multiple>
+            <div id="servicios">
                 @foreach ($servicios as $servicio)
-                <option value="{{ $servicio->id }}">{{ $servicio->nombre_servicio }}</option>
+                <div class="servicio-box" data-id="{{ $servicio->id }}" onclick="toggleServiceSelection('{{ $servicio->id }}')">
+                    <p>{{ $servicio->nombre_servicio }}</p>
+                </div>
+
                 @endforeach
-            </select>
+            </div>
             @error('servicios')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -175,4 +177,49 @@
         <button type="submit" class="btn btn-success">Crear Anuncio</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const selectedServices = @json(old('servicios', []));
+
+        selectedServices.forEach(serviceId => {
+            const box = document.querySelector(`.servicio-box[data-id='${serviceId}']`);
+            if (box) {
+                box.classList.add('selected');
+                // Agregar el input correspondiente al servicio
+                addInput(serviceId);
+            }
+        });
+    });
+
+    function toggleServiceSelection(serviceId) {
+        const serviceBox = document.querySelector(`.servicio-box[data-id='${serviceId}']`);
+        const inputExists = document.querySelector(`#servicio_${serviceId}`);
+
+        if (serviceBox.classList.contains('selected')) {
+            // Si la caja está seleccionada, la deseleccionamos
+            serviceBox.classList.remove('selected');
+            if (inputExists) {
+                inputExists.parentElement.removeChild(inputExists);
+            }
+        } else {
+            // Si la caja no está seleccionada, la seleccionamos
+            serviceBox.classList.add('selected');
+            addInput(serviceId);
+        }
+    }
+
+    function addInput(serviceId) {
+        const serviceBox = document.querySelector(`.servicio-box[data-id='${serviceId}']`);
+        // Crear un input oculto para el servicio seleccionado
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'servicios[]';
+        input.value = serviceId;
+        input.id = `servicio_${serviceId}`;
+        serviceBox.appendChild(input);
+    }
+</script>
+
+
 @endsection
