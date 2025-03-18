@@ -13,17 +13,18 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <!-- Genero -->
+
         <div class="form-group">
             <label for="genero">Genero</label>
-            <select class="form-control @error('genero') is-invalid @enderror" id="genero" name="id_genero">
+            <select class="form-control @error('id_genero') is-invalid @enderror" id="genero" name="id_genero">
+                <option value="" disabled selected>Selecciona una opción</option> <!-- Opción por defecto -->
                 @foreach ($generos as $genero)
-                <option value="{{ $genero->id }}" {{ (old('id_genero') == $genero->id ? 'selected' : '') }}>
+                <option value="{{ $genero->id }}" {{ old('id_genero') == $genero->id ? 'selected' : '' }}>
                     {{ $genero->nombre_genero }}
                 </option>
                 @endforeach
             </select>
-            @error('genero')
+            @error('id_genero')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -36,7 +37,6 @@
             @enderror
         </div>
 
-        <!-- Campo Fumas -->
         <div class="form-group">
             <label for="fumas">¿Fumas?</label>
             <select class="form-control @error('fumas') is-invalid @enderror" id="fumas" name="fumas" required>
@@ -48,7 +48,6 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
 
         <div class="form-group">
             <label for="telefono">Teléfono</label>
@@ -74,17 +73,17 @@
             @enderror
         </div>
 
-        <!-- Nacionalidad -->
         <div class="form-group">
             <label for="nacionalidad">Nacionalidad</label>
-            <select class="form-control @error('nacionalidad') is-invalid @enderror" id="nacionalidad" name="id_nacionalidad">
+            <select class="form-control @error('id_nacionalidad') is-invalid @enderror" id="nacionalidad" name="id_nacionalidad">
+                <option value="" disabled selected>Selecciona una opción</option> <!-- Opción por defecto -->
                 @foreach ($nacionalidades as $nacionalidad)
-                <option value="{{ $nacionalidad->id }}" {{ (old('id_nacionalidad') == $nacionalidad->id ? 'selected' : '') }}>
+                <option value="{{ $nacionalidad->id }}" {{ old('id_nacionalidad') == $nacionalidad->id ? 'selected' : '' }}>
                     {{ $nacionalidad->nombre_nacionalidad }}
                 </option>
                 @endforeach
             </select>
-            @error('nacionalidad')
+            @error('id_nacionalidad')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -104,17 +103,17 @@
             @enderror
         </div>
 
-        <!-- Municipio -->
         <div class="form-group">
             <label for="municipio">Municipio</label>
-            <select class="form-control @error('municipio') is-invalid @enderror" id="municipio" name="id_municipio">
+            <select class="form-control @error('id_municipio') is-invalid @enderror" id="municipio" name="id_municipio">
+                <option value="" disabled selected>Selecciona una opción</option> <!-- Opción por defecto -->
                 @foreach ($municipios as $municipio)
-                <option value="{{ $municipio->id }}" {{ (old('id_municipio') == $municipio->id ? 'selected' : '') }}>
+                <option value="{{ $municipio->id }}" {{ old('id_municipio') == $municipio->id ? 'selected' : '' }}>
                     {{ $municipio->nombre_municipio }}
                 </option>
                 @endforeach
             </select>
-            @error('municipio')
+            @error('id_municipio')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

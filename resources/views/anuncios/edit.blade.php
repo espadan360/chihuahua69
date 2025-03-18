@@ -3,12 +3,10 @@
 @section('content')
 <div class="container">
     <h1 class="my-4">Editar Anuncio</h1>
-
     <form action="{{ route('anuncios.update', $anuncio) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        <!-- Nombre -->
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre', $anuncio->nombre) }}">
@@ -17,7 +15,6 @@
             @enderror
         </div>
 
-        <!-- genero -->
         <div class="form-group">
             <label for="genero">Genero</label>
             <select class="form-control @error('id_genero') is-invalid @enderror" id="genero" name="id_genero">
@@ -33,7 +30,6 @@
             @enderror
         </div>
 
-        <!-- Edad -->
         <div class="form-group">
             <label for="edad">Edad</label>
             <input type="number" class="form-control @error('edad') is-invalid @enderror" id="edad" name="edad" value="{{ old('edad', $anuncio->edad) }}">
@@ -42,7 +38,6 @@
             @enderror
         </div>
 
-        <!-- Campo Fumas en Edición -->
         <div class="form-group">
             <label for="fumas">¿Fumas?</label>
             <select class="form-control @error('fumas') is-invalid @enderror" id="fumas" name="fumas" required>
@@ -54,8 +49,6 @@
             @enderror
         </div>
 
-
-        <!-- Teléfono -->
         <div class="form-group">
             <label for="telefono">Teléfono</label>
             <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono', $anuncio->telefono) }}">
@@ -80,7 +73,6 @@
             @enderror
         </div>
 
-        <!-- Nacionalidad -->
         <div class="form-group">
             <label for="nacionalidad">Nacionalidad</label>
             <select class="form-control @error('id_nacionalidad') is-invalid @enderror" id="nacionalidad" name="id_nacionalidad">
@@ -111,7 +103,6 @@
             @enderror
         </div>
 
-        <!-- Municipio -->
         <div class="form-group">
             <label for="municipio">Municipio</label>
             <select class="form-control @error('id_municipio') is-invalid @enderror" id="municipio" name="id_municipio">
@@ -126,7 +117,7 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <!-- Lugar que atiende -->
+
         <div class="form-group">
             <label for="lugar_atiendo">Lugar que atiende</label>
             <input type="text" class="form-control @error('lugar_atiendo') is-invalid @enderror" id="lugar_atiendo" name="lugar_atiendo" value="{{ old('lugar_atiendo', $anuncio->lugar_atiendo) }}">
@@ -135,7 +126,6 @@
             @enderror
         </div>
 
-        <!-- Horarios que atiende -->
         <div class="form-group">
             <label for="horarios_atiendo">Horarios que atiende</label>
             <input type="text" class="form-control @error('horarios_atiendo') is-invalid @enderror" id="horarios_atiendo" name="horarios_atiendo" value="{{ old('horarios_atiendo', $anuncio->horarios_atiendo) }}">
@@ -144,7 +134,6 @@
             @enderror
         </div>
 
-        <!-- Medidas -->
         <div class="form-group">
             <label for="medidas">Medidas</label>
             <input type="text" class="form-control @error('medidas') is-invalid @enderror" id="medidas" name="medidas" value="{{ old('medidas', $anuncio->medidas) }}">
@@ -153,7 +142,6 @@
             @enderror
         </div>
 
-        <!-- Altura -->
         <div class="form-group">
             <label for="altura">Altura</label>
             <input type="text" class="form-control @error('altura') is-invalid @enderror" id="altura" name="altura" value="{{ old('altura', $anuncio->altura) }}">
@@ -162,7 +150,6 @@
             @enderror
         </div>
 
-        <!-- Peso -->
         <div class="form-group">
             <label for="peso">Peso</label>
             <input type="text" class="form-control @error('peso') is-invalid @enderror" id="peso" name="peso" value="{{ old('peso', $anuncio->peso) }}">
@@ -171,7 +158,6 @@
             @enderror
         </div>
 
-        <!-- Descripción -->
         <div class="form-group">
             <label for="descripcion">Descripción</label>
             <textarea class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" name="descripcion">{{ old('descripcion', $anuncio->descripcion) }}</textarea>
@@ -180,7 +166,6 @@
             @enderror
         </div>
 
-        <!-- Mostrar imágenes actuales -->
         <div class="form-group">
             <label for="imagenes">Imágenes actuales:</label>
             <div class="row">
@@ -220,7 +205,7 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const selectedServices = @json(old('servicios', $anuncio->servicios->pluck('id')->toArray()));
+        const selectedServices = @json(old('servicios', $anuncio - > servicios - > pluck('id') - > toArray()));
 
         selectedServices.forEach(serviceId => {
             const box = document.querySelector(`.servicio-box[data-id='${serviceId}']`);

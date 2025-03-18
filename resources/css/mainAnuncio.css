@@ -9,9 +9,9 @@
 }
 
 .servicio-box.selected {
-    background-color: #d3f9d8; /* Color cuando la caja está seleccionada */
+    background-color: #f101d5; /* Color cuando la caja está seleccionada */
 }
 
 .servicio-box:hover {
-    background-color: #f0f0f0;
+    background-color: #7e0267;
 }
