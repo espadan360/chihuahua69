@@ -8,7 +8,7 @@ use App\Http\Controllers\AdministracionController;
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
-Route::get('/anuncio/{id_anuncio}', [WelcomeController::class, 'show'])->name('anuncio');
+Route::get('/{nombre}/{id_anuncio}', [WelcomeController::class, 'show'])->name('anuncio');
 
 // Rutas protegidas por autenticación
 Route::middleware('auth')->group(function () {

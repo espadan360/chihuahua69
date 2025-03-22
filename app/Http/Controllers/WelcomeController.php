@@ -8,6 +8,7 @@ use App\Models\Municipio;
 use App\Models\Servicio;
 use App\Models\Nacionalidad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class WelcomeController extends Controller
@@ -46,7 +47,7 @@ class WelcomeController extends Controller
                     $q->whereIn('servicios.id', $serviciosSeleccionados);
                 });
             })
-            
+
             ->get();
 
         // Procesar las imágenes para cada anuncio
@@ -68,18 +69,24 @@ class WelcomeController extends Controller
     }
 
 
-    public function show($id)
+    public function show($nombre, $id_anuncio)
     {
         // Obtener el anuncio con sus imágenes y relaciones
-        $anuncio = Anuncio::with(['imagenes', 'nacionalidad', 'municipio', 'genero'])->findOrFail($id);
-    
+        $anuncio = Anuncio::with(['imagenes', 'nacionalidad', 'municipio', 'genero'])->findOrFail($id_anuncio);
+
+        // Verificar si el nombre en URL coincide con el real del anuncio
+        if (Str::slug($anuncio->nombre) !== $nombre) {
+            return redirect()->route('anuncio', [
+                'nombre' => Str::slug($anuncio->nombre),
+                'id_anuncio' => $anuncio->id
+            ], 301); // Redirección permanente
+        }
+
         // Verificar si el anuncio tiene imágenes
-        $imagenPrincipal = $anuncio->imagenes->isEmpty() 
-                            ? (object)['ruta' => '/ImgAnuncio.png'] // Ruta por defecto si no tiene imágenes
-                            : $anuncio->imagenes->first(); // Si tiene imágenes, obtener la primera
-    
-        // Pasar el anuncio y la imagen principal a la vista de detalles
+        $imagenPrincipal = $anuncio->imagenes->isEmpty()
+            ? (object)['ruta' => '/ImgAnuncio.png']
+            : $anuncio->imagenes->first();
+
         return view('anuncio', compact('anuncio', 'imagenPrincipal'));
     }
-    
 }

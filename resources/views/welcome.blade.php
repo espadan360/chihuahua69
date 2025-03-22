@@ -117,7 +117,7 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 anuncioIndividual">
         @foreach($anuncios as $anuncio)
         <div class="col">
-            <a href="{{ route('anuncio', ['id_anuncio' => $anuncio->id]) }}">
+        <a href="{{ route('anuncio', ['nombre' => \Illuminate\Support\Str::slug($anuncio->nombre), 'id_anuncio' => $anuncio->id]) }}">
                 <!-- Tarjeta de anuncio -->
                 <div class="card h-100">
                     @php
