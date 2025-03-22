@@ -18,10 +18,12 @@
                         {{ __('Anuncios') }}
                     </x-nav-link>
 
-                    <!-- Mostrar el enlace de administración solo si el estado del usuario es 1 -->
+                    <!-- Mostrar el enlace de administración solo si el nivel_acceso del usuario es 1 -->
+                    @if(auth()->user() && auth()->user()->nivel_acceso == 1)
                     <x-nav-link :href="route('administracion.index')" :active="request()->routeIs('administracion.index')">
                         {{ __('Administración') }}
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
             <!-- Settings Dropdown -->

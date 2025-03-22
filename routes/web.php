@@ -33,6 +33,11 @@ Route::prefix('administracion')->middleware('auth')->group(function() {
     Route::get('/permitir/{anuncio}', [AdministracionController::class, 'permitir'])->name('administracion.permitir');
     Route::get('/denegar/{anuncio}', [AdministracionController::class, 'denegar'])->name('administracion.denegar');
 });
+
+Route::middleware('auth')->group(function() {
+    Route::get('/administracion', [AdministracionController::class, 'index'])->name('administracion.index');
+});
+
 });
 
 require __DIR__ . '/auth.php';
