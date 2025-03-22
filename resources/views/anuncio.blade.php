@@ -1,4 +1,5 @@
 @extends('layouts.appPublic')
+@vite(['resources/css/anuncios.css'])
 <style>
     .imgDefecto img.d-block.w-100 {
         height: 55vh !important;
@@ -47,5 +48,40 @@
         <p><strong>Peso:</strong> {{ $anuncio->peso }}</p>
         <p><strong>Fuma:</strong> {{ $anuncio->fumas == 1 ? 'Sí' : 'No' }}</p>
     </div>
+
+    <br>
+    <!-- Mostrar los anuncios relacionados -->
+    @if($anunciosRelacionados->isNotEmpty())
+    <h3>Anuncios relacionados</h3>
+    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4 anuncioIndividual">
+        @foreach($anunciosRelacionados as $anuncioRelacionado)
+        <div class="col">
+            <a href="{{ route('anuncio', ['nombre' => \Illuminate\Support\Str::slug($anuncioRelacionado->nombre), 'id_anuncio' => $anuncioRelacionado->id]) }}">
+                <div class="card h-100">
+                    @php
+                    $imagen = $anuncioRelacionado->imagenes->isNotEmpty() ? $anuncioRelacionado->imagenes->first() : (object)['ruta' => '/ImgAnuncio.png'];
+                    @endphp
+                    <img src="{{ asset('storage/' . $imagen->ruta) }}" class="card-img-top" alt="Imagen del anuncio">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $anuncioRelacionado->nombre }}</h5>
+                        <p class="card-text">
+                            {{ $anuncioRelacionado->descripcion }}<br>
+                            <strong>Servicios:</strong> {{ $anuncioRelacionado->servicios->pluck('nombre_servicio')->join(', ') }}<br>
+                            <strong>Municipio:</strong> {{ $anuncioRelacionado->municipio ? $anuncioRelacionado->municipio->nombre_municipio : 'No especificado' }} <br>
+                            <strong>Nacionalidad:</strong> {{ $anuncioRelacionado->nacionalidad ? $anuncioRelacionado->nacionalidad->nombre_nacionalidad : 'No especificada' }} <br>
+                            <strong>Tarifa por hora:</strong> {{ $anuncioRelacionado->tarifa_hora }}€/hora<br>
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        {{ $anuncioRelacionado->telefono }}
+                    </div>
+                </div>
+            </a>
+        </div>
+        @endforeach
+    </div>
+    @endif
+<br>
 </div>
 @endsection

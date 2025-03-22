@@ -1,5 +1,5 @@
 .card {
-    background-color: #ec81c3; 
+    background-color: #ec81c3 !important; 
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -19,7 +19,7 @@
 }
 
 .card-footer {
-    background-color:  #fdd1ef; 
+    background-color:  #fdd1ef !important; 
     font-size: 20px;
     border-top: 1px solid #e9ecef; 
     border-radius: 8px !important;

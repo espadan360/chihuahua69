@@ -68,25 +68,62 @@ class WelcomeController extends Controller
         return view('welcome', compact('anuncios', 'generos', 'municipios', 'nacionalidades', 'servicios'));
     }
 
-
     public function show($nombre, $id_anuncio)
     {
-        // Obtener el anuncio con sus imágenes y relaciones
         $anuncio = Anuncio::with(['imagenes', 'nacionalidad', 'municipio', 'genero'])->findOrFail($id_anuncio);
-
-        // Verificar si el nombre en URL coincide con el real del anuncio
         if (Str::slug($anuncio->nombre) !== $nombre) {
             return redirect()->route('anuncio', [
                 'nombre' => Str::slug($anuncio->nombre),
                 'id_anuncio' => $anuncio->id
-            ], 301); // Redirección permanente
+            ], 301);
         }
 
-        // Verificar si el anuncio tiene imágenes
+        $anunciosRelacionados = $this->obtenerAnunciosRelacionados($anuncio);
+
         $imagenPrincipal = $anuncio->imagenes->isEmpty()
             ? (object)['ruta' => '/ImgAnuncio.png']
             : $anuncio->imagenes->first();
 
-        return view('anuncio', compact('anuncio', 'imagenPrincipal'));
+        return view('anuncio', compact('anuncio', 'imagenPrincipal', 'anunciosRelacionados'));
+    }
+
+    // Función para obtener anuncios relacionados
+    private function obtenerAnunciosRelacionados($anuncio)
+    {
+        $anunciosRelacionados = Anuncio::with('imagenes', 'nacionalidad', 'municipio', 'genero')
+            ->where('estado', 1)
+            ->where('id_municipio', $anuncio->id_municipio)
+            ->where('id', '!=', $anuncio->id)
+            ->limit(3)
+            ->get();
+        if ($anunciosRelacionados->isEmpty()) {
+            $anunciosRelacionados = Anuncio::with('imagenes', 'nacionalidad', 'municipio', 'genero')
+                ->where('estado', 1)
+                ->where('id_nacionalidad', $anuncio->id_nacionalidad)
+                ->where('id', '!=', $anuncio->id)
+                ->limit(3)
+                ->get();
+        }
+        if ($anunciosRelacionados->isEmpty()) {
+            $anunciosRelacionados = Anuncio::with('imagenes', 'nacionalidad', 'municipio', 'genero')
+                ->where('estado', 1)
+                ->where('id_genero', $anuncio->id_genero)
+                ->where('id', '!=', $anuncio->id)
+                ->limit(3)
+                ->get();
+        }
+        if ($anunciosRelacionados->count() < 3) {
+            $cantidadFaltante = 3 - $anunciosRelacionados->count();
+            $anunciosAleatorios = Anuncio::with('imagenes', 'nacionalidad', 'municipio', 'genero')
+                ->where('estado', 1)
+                ->where('id', '!=', $anuncio->id) 
+                ->inRandomOrder() 
+                ->limit($cantidadFaltante) 
+                ->get();
+            $anunciosRelacionados = $anunciosRelacionados->merge($anunciosAleatorios);
+        }
+
+
+        return $anunciosRelacionados;
     }
 }
