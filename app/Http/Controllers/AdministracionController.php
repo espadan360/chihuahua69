@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anuncio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AdministracionController extends Controller
 {
@@ -45,13 +46,18 @@ class AdministracionController extends Controller
         return redirect()->route('administracion.index')->with('success', 'Anuncio denegado');
     }
 
-    public function show($id)
+    public function show($nombre, $id_anuncio)
     {
         if (Auth::check() && Auth::user()->nivel_acceso != 1) {
             return redirect()->route('dashboard')->with('error', 'No tienes permiso para acceder.');
         }
-        $anuncio = Anuncio::with(['imagenes', 'nacionalidad', 'municipio', 'genero'])->findOrFail($id);
-
+        $anuncio = Anuncio::with(['imagenes', 'nacionalidad', 'municipio', 'genero'])->findOrFail($id_anuncio);
+        if (Str::slug($anuncio->nombre) !== $nombre) {
+            return redirect()->route('anuncio', [
+                'nombre' => Str::slug($anuncio->nombre),
+                'id_anuncio' => $anuncio->id
+            ], 301);
+        }
         $imagenPrincipal = $anuncio->imagenes->isEmpty()
             ? (object)['ruta' => '/ImgAnuncio.png'] // Ruta por defecto si no tiene imágenes
             : $anuncio->imagenes->first(); 

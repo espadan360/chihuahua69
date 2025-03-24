@@ -10,8 +10,8 @@ use App\Http\Controllers\Auth\NewPasswordController;
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
     ->name('password.reset');
 Route::post('reset-password/{token}', [NewPasswordController::class, 'store'])
-    ->name('password.update');
-
+    ->name('password.custom.update');
+    
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 Route::get('/{nombre}/{id_anuncio}', [WelcomeController::class, 'show'])->name('anuncio');
 

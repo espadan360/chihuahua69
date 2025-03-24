@@ -34,7 +34,7 @@
                     <td>
                         <a href="{{ route('administracion.permitir', $anuncio) }}" class="btn btn-success">Permitir</a>
                         <a href="{{ route('administracion.denegar', $anuncio) }}" class="btn btn-danger">Denegar</a>
-                        <a href="{{ route('anuncio', ['id_anuncio' => $anuncio->id]) }}" class="btn btn-success">Ver</a>
+                        <a href="{{ route('anuncio', ['nombre' => \Illuminate\Support\Str::slug($anuncio->nombre), 'id_anuncio' => $anuncio->id]) }}"class="btn btn-success">Ver</a>
                     </td>
                 </tr>
             @endforeach
