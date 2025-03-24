@@ -35,12 +35,16 @@ class AnuncioController extends Controller
 
     public function create()
     {
+        dd('La función create ha sido llamada');
+    
         $nacionalidades = Nacionalidad::all();
         $municipios = Municipio::all();
         $generos = Genero::all();
         $servicios = Servicio::all();
+    
         return view('anuncios.create', compact('nacionalidades', 'municipios', 'generos', 'servicios'));
     }
+    
 
 
     public function store(Request $request)
