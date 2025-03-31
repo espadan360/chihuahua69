@@ -6,6 +6,7 @@ use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AdministracionController;
 use App\Http\Controllers\Auth\NewPasswordController;
+Route::resource('anuncios', AnuncioController::class);
 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
     ->name('password.reset');
