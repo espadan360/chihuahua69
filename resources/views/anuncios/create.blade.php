@@ -218,7 +218,30 @@
         input.id = `servicio_${serviceId}`;
         serviceBox.appendChild(input);
     }
-</script>
 
+
+    document.getElementById('imagenes').addEventListener('change', function(event) {
+    const files = event.target.files;
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    let totalSize = 0;
+    let invalid = false;
+
+    for (let i = 0; i < files.length; i++) {
+        totalSize += files[i].size;
+        if (files[i].size > maxSize) {
+            invalid = true;
+        }
+    }
+
+    if (totalSize > maxSize) {
+        invalid = true;
+    }
+
+    if (invalid) {
+        alert('Las imágenes deben ser menores a 5MB.');
+        event.target.value = ''; 
+    }
+});
+</script>
 
 @endsection

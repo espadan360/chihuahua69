@@ -52,7 +52,7 @@ class AnuncioController extends Controller
         $request->validate([
             'id_genero' => 'required|exists:generos,id',
             'edad' => 'integer',
-            'nombre' => 'string',
+            'nombre' => 'required|string',
             'tarifa_general' => 'string',
             'fumas' => 'required|integer|in:0,1',
             'telefono' => 'string',
@@ -63,10 +63,10 @@ class AnuncioController extends Controller
             'medidas' => 'string',
             'altura' => 'string',
             'peso' => 'string',
-            'descripcion' => 'string',
+            'descripcion' => 'string|max:350',
             'me_gusta' => 'integer',
             'imagenes' => 'nullable|array',
-            'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:8000',
             'servicios' => 'required|array',
             'servicios.*' => 'exists:servicios,id',
         ]);
@@ -127,7 +127,7 @@ class AnuncioController extends Controller
             'fumas' => 'required|integer|in:0,1',
             'altura' => 'string',
             'peso' => 'string',
-            'descripcion' => 'string',
+            'descripcion' => 'string|max:350',
             'me_gusta' => 'integer',
             'tarifa_general' => 'string',
             'imagenes' => 'nullable|array',
@@ -199,7 +199,12 @@ class AnuncioController extends Controller
 
     public function destroy(Anuncio $anuncio)
     {
+        foreach ($anuncio->imagenes as $imagen) {
+            Storage::disk('public')->delete($imagen->ruta); 
+            $imagen->delete(); 
+        }
+        $anuncio->servicios()->detach();
         $anuncio->delete();
-        return redirect()->route('anuncios.index');
+        return redirect()->route('anuncios.index')->with('success', 'Anuncio eliminado correctamente.');
     }
 }
