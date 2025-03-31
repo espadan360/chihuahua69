@@ -48,5 +48,7 @@
                 {{ __('Register') }}
             </x-primary-button>
         </div>
+        {!! NoCaptcha::renderJs() !!}
+        {!! NoCaptcha::display() !!}
     </form>
 </x-guest-layout>

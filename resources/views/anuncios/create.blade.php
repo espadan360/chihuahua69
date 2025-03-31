@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="my-4">Crear Nuevo Anuncio</h1>
 
-    <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">       
         @csrf
         <div class="form-group">
             <label for="nombre">Nombre</label>

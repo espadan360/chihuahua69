@@ -19,31 +19,31 @@ class AnuncioController extends Controller
         $anuncios = Anuncio::with('nacionalidad', 'municipio', 'genero', 'servicios', 'imagenes')->where('id_usuario', Auth::id())->get();
         foreach ($anuncios as $anuncio) {
             $imagenPrincipal = $anuncio->imagenes->firstWhere('principal', 1);
-            
+
             // Si no tiene imagen principal, asignar una imagen por defecto
             if (!$imagenPrincipal && $anuncio->imagenes->isEmpty()) {
                 $imagenPrincipal = (object)['ruta' => '/LogoChihuahua.png'];
             }
-    
+
             // Asignamos la imagen principal (o la predeterminada) al anuncio
             $anuncio->imagenPrincipal = $imagenPrincipal;
         }
-    
+
         return view('anuncios.index', compact('anuncios'));
     }
-    
+
 
     public function create()
     {
-    
+
         $nacionalidades = Nacionalidad::all();
         $municipios = Municipio::all();
         $generos = Genero::all();
         $servicios = Servicio::all();
-    
+
         return view('anuncios.create', compact('nacionalidades', 'municipios', 'generos', 'servicios'));
     }
-    
+
 
 
     public function store(Request $request)
@@ -51,7 +51,7 @@ class AnuncioController extends Controller
         // Validaciones del anuncio
         $request->validate([
             'id_genero' => 'required|exists:generos,id',
-            'edad' => 'integer',
+            'edad' => 'required|integer',
             'nombre' => 'required|string',
             'tarifa_general' => 'string',
             'fumas' => 'required|integer|in:0,1',
@@ -63,7 +63,7 @@ class AnuncioController extends Controller
             'medidas' => 'string',
             'altura' => 'string',
             'peso' => 'string',
-            'descripcion' => 'string|max:350',
+            'descripcion' => 'required|string|max:350',
             'me_gusta' => 'integer',
             'imagenes' => 'nullable|array',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:8000',
@@ -114,10 +114,11 @@ class AnuncioController extends Controller
 
     public function update(Request $request, Anuncio $anuncio)
     {
+
         $request->validate([
             'id_genero' => 'required|exists:generos,id',
             'edad' => 'integer',
-            'nombre' => 'string',
+            'nombre' => 'required|string',
             'telefono' => 'string',
             'id_nacionalidad' => 'required|exists:nacionalidades,id',
             'id_municipio' => 'required|exists:municipios,id',
@@ -127,7 +128,7 @@ class AnuncioController extends Controller
             'fumas' => 'required|integer|in:0,1',
             'altura' => 'string',
             'peso' => 'string',
-            'descripcion' => 'string|max:350',
+            'descripcion' => 'required|string|max:350',
             'me_gusta' => 'integer',
             'tarifa_general' => 'string',
             'imagenes' => 'nullable|array',
@@ -139,7 +140,7 @@ class AnuncioController extends Controller
         ]);
 
         $anuncio->update($request->except('servicios'));
-        $anuncio->servicios()->sync($request->servicios); 
+        $anuncio->servicios()->sync($request->servicios);
 
         // Eliminar imágenes seleccionadas
         if ($request->has('eliminar_imagenes')) {
@@ -200,8 +201,8 @@ class AnuncioController extends Controller
     public function destroy(Anuncio $anuncio)
     {
         foreach ($anuncio->imagenes as $imagen) {
-            Storage::disk('public')->delete($imagen->ruta); 
-            $imagen->delete(); 
+            Storage::disk('public')->delete($imagen->ruta);
+            $imagen->delete();
         }
         $anuncio->servicios()->detach();
         $anuncio->delete();
