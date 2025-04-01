@@ -167,7 +167,7 @@
 <p>Ten en cuenta que está página es en exclusiva para profesionales del sector erótico que viven o se encuentran en el estado de Chihuahua en México. Sabemos que es un estado muy reconocido, tanto por la propia identidad como por el encanto y la belleza de las chihuahuenses. Entonces si quieres disfrutar del placer de estar en una tierra única y con la mejor compañía, ya sabes donde tienes que venirte.</p> 
 <p>Chihuahua69 es la mejor web donde escorts y putas independientes pueden anunciarse. Disfruta ya del momento y consigue el contacto de auténticas profesionales con las que hacer realidad juntos vuestras fantasías. El placer te espera.</p> 
 <div class="image-container ">
-<img src="http://127.0.0.1:8000/storage/putas.jpg" alt="">
+<img src="http://127.0.0.1:8000/storage/chicas.png" alt="">
 </div>
 </div>
     <br>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appPublic')
 @vite(['resources/css/mainAnuncio.css'])
 @vite(['resources/css/botones.css'])
 @section('content')

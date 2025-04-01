@@ -6,17 +6,21 @@ use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AdministracionController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\ContactanosController;
 
 Route::resource('anuncios', AnuncioController::class);
 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
     ->name('password.reset');
 Route::post('reset-password/{token}', [NewPasswordController::class, 'store'])
-    ->name('password.custom.update');  
+    ->name('password.custom.update');
 // Ruta para la página de bienvenida (fuera del grupo de autenticación)
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 Route::get('/{nombre}/{id_anuncio}', [WelcomeController::class, 'show'])->name('anuncio');
-
+Route::get('contactanos', [ContactanosController::class, 'index'])
+    ->name('contactanos.index');
+Route::post('contactanos', [ContactanosController::class, 'store'])
+    ->name('contactanos.store');
 // Rutas protegidas por autenticación
 Route::middleware('auth')->group(function () {
 

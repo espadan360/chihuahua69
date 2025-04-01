@@ -22,8 +22,8 @@
                     <x-nav-link :href="route('anuncios.index')" :active="request()->routeIs('anuncios.index')">
                         {{ __('Anuncios') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('anuncios.create')" :active="request()->routeIs('anuncios.index')">
-                        {{ __('Crear anuncio') }}
+                    <x-nav-link :href="route('contactanos.index')" :active="request()->routeIs('contactanos.index')">
+                        {{ __('Contacto') }}
                     </x-nav-link>
                     @else
                     <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
@@ -34,6 +34,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('anuncios.create')" :active="request()->routeIs('anuncios.index')">
                         {{ __('Crear anuncio') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('contactanos.index')" :active="request()->routeIs('contactanos.index')">
+                        {{ __('Contacto') }}
                     </x-nav-link>
                     @endauth
                 </div>
@@ -59,7 +62,7 @@
                     <x-slot name="content">
                         @auth
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -96,10 +99,15 @@
             <x-responsive-nav-link :href="route('anuncios.index')" :active="request()->routeIs('anuncios.index')">
                 {{ __('Anuncios') }}
             </x-responsive-nav-link>
-
+            <x-responsive-nav-link :href="route('contactanos.index')" :active="request()->routeIs('contactanos.index')">
+                {{ __('Contacto') }}
+            </x-responsive-nav-link>
             @else
             <x-responsive-nav-link  :href="route('anuncios.create')" :active="request()->routeIs('anuncios.index')">
-                        {{ __('Crear anuncio') }}
+             {{ __('Crear anuncio') }}
+            </x-responsive-nav-link >
+            <x-responsive-nav-link  :href="route('contactanos.index')" :active="request()->routeIs('contactanos.index')">
+             {{ __('Contacto') }}
             </x-responsive-nav-link >
             <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
                 {{ __('Iniciar sesión') }}
@@ -117,10 +125,9 @@
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
-
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Perfil') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
