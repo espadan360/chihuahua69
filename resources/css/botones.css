@@ -1,0 +1,72 @@
+.boton {}
+
+.btntabla {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btntabla form {
+    margin: 0;
+}
+
+.btntabla .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btntabla .btn:hover {
+    opacity: 0.8;
+}
+
+
+.filtrar {
+    background: #92eae3 !important;
+    color: #000 !important;
+}
+ .masfiltro{
+    background: #c3f5f0 !important;
+    color: #000 !important;
+ }
+
+.eliminarfiltro{
+    background: #e66d66 !important;
+    color: #000 !important;
+}
+
+.filtrar:hover, .masfiltro:hover, .eliminarfiltro:hover{
+    opacity: 0.8 !important;
+}
+
+.editar{
+    background: #ecde81 !important;
+    color: #000 !important;
+}
+
+.activar{
+    background: #81cfec !important;
+    color: #000 !important;
+}
+
+.eliminar{
+    background: #ec8681 !important;
+    color: #000 !important;
+}
+
+
+
+.crear{
+    background: #81ecaa !important;
+    color: #000 !important;
+}
+
+.crear:hover{
+    opacity: 0.8;
+}
+

@@ -28,7 +28,7 @@ a {
 
 /* Mejor espaciado para los contenedores */
 .container {
-   max-width: 70vw;
+   max-width: 90vw;
 }
 img.logo {
     height: 60px;

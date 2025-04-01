@@ -1,5 +1,5 @@
 @extends('layouts.appPublic')
-
+@vite(['resources/css/botones.css'])
 @section('content')
 
 @vite(['resources/css/anuncios.css'])
@@ -105,15 +105,15 @@
         </div>
 
         <!-- Botones de filtrado -->
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Filtrar</button>
-            <button type="button" class="btn btn-secondary" onclick="toggleFilters()">Más filtros</button>
-            <a href="{{ route('welcome.index') }}" class="btn btn-danger">Eliminar filtros</a>
+        <div class="mt-3 botones">
+            <button type="submit" class="btn filtrar">Filtrar</button>
+            <button type="button" class="btn masfiltro" onclick="toggleFilters()">Más filtros</button>
+            <a href="{{ route('welcome.index') }}" class="btn eliminarfiltro">Eliminar filtros</a>
         </div>
     </form>
 
     <p>Escorts en Chihuahua estado disponibles ahora mismo para encuentro:</p>
-
+    <br>
     <div class="row row-cols-1 row-cols-md-3 g-4 anuncioIndividual">
         @foreach($anuncios as $anuncio)
         <div class="col">

@@ -1,3 +1,4 @@
+@vite(['resources/css/auth.css'])
 <x-guest-layout>
 <form method="POST" action="{{ route('password.reset', $token) }}">
 
