@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @vite(['resources/css/mainAnuncio.css'])
+@vite(['resources/css/botones.css'])
 @section('content')
 <div class="container">
     <h1 class="my-4">Editar Anuncio</h1>
@@ -172,7 +173,6 @@
                 @foreach($anuncio->imagenes as $imagen)
                 <div class="col-md-3">
                     <img src="{{ asset('storage/' . $imagen->ruta) }}" class="img-thumbnail" alt="Imagen del anuncio">
-                    <br>
                     <label>
                         <input type="checkbox" name="eliminar_imagenes[]" value="{{ $imagen->id }}">
                         Eliminar esta imagen
@@ -183,6 +183,7 @@
                         <input type="radio" name="imagen_principal" value="{{ $imagen->id }}" {{ $imagen->principal ? 'checked' : '' }}>
                         Esta es la imagen principal
                     </label>
+                    <br> <br>
                 </div>
                 @endforeach
             </div>
@@ -198,9 +199,8 @@
         </div>
 
         <input type="hidden" name="id_usuario" value="{{ $anuncio->id_usuario }}">
-
-
-        <button type="submit" class="btn btn-warning">Actualizar Anuncio</button>
+<br>
+        <button type="submit" class="btn crear">Actualizar Anuncio</button>
     </form>
 </div>
 <script>

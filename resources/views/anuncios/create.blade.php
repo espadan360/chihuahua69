@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @vite(['resources/css/mainAnuncio.css'])
+@vite(['resources/css/botones.css'])
 @section('content')
 <div class="container">
     <h1 class="my-4">Crear Nuevo Anuncio</h1>
@@ -173,7 +174,8 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-success">Crear Anuncio</button>
+        <br>
+        <button type="submit" class="btn crear">Crear Anuncio</button>
     </form>
 </div>
 

@@ -15,3 +15,79 @@
 .servicio-box:hover {
     background-color: #7e0267;
 }
+
+/* Estilo general del contenedor */
+.container {
+    max-width: 70vw !important;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fce2fc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* Estilo de las etiquetas */
+label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Estilo de los servicios */
+#servicios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.servicio-box {
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 48%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.servicio-box:hover {
+    background-color: #56014a;;
+}
+
+.servicio-box.selected {
+    background-color: #d51cc6;
+    color: white;
+}
+
+/* Estilos de los inputs de imagen */
+input[type="file"] {
+    font-size: 14px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Diseño responsivo para dispositivos pequeños */
+@media (max-width: 767px) {
+    .container {
+        padding: 20px;
+        max-width: 90vw !important;
+
+    }
+
+    #servicios .servicio-box {
+        width: 100%;
+    }
+}
