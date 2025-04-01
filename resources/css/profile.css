@@ -1,0 +1,13 @@
+input {
+    color: black !important;
+}
+
+header.bg-white.dark\:bg-gray-800.shadow {
+    background-color: black !important;
+}
+
+h2.font-semibold.text-xl.text-gray-800.dark\:text-gray-200.leading-tight {
+    color: rgb(244, 113, 222);
+    font-size: 31px;
+    margin-left: 25px;
+}

@@ -1,5 +1,5 @@
 a {
-    color: #dc4fff !important;
+    color: #fcc0e5  !important;
 }
 
 a:hover{
@@ -11,5 +11,5 @@ svg{
 }
 
 .font-medium.text-base.text-gray-800.dark\:text-gray-200, .font-medium.text-sm.text-gray-500{
-    color: #dc4fff !important;
+    color: #fcc0e5 !important;
 }
