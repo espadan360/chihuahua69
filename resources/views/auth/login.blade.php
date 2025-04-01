@@ -1,9 +1,9 @@
 @vite(['resources/css/auth.css'])
 <x-guest-layout>
     <!-- Session Status -->
-     
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
-   <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <!-- Email Address -->
@@ -34,8 +34,8 @@
         </div>
 
         <div class="flex items-center justify-end mt-4 boton">
-            
-        <x-primary-button class="ms-3">
+
+            <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
             @if (Route::has('password.request'))
@@ -44,10 +44,14 @@
             </a>
             @endif
 
+            <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                {{ __('Registrar') }}
+            </x-nav-link>
+
         </div>
         <div class="captcha">
-        {!! NoCaptcha::renderJs() !!}
-        {!! NoCaptcha::display() !!}
+            {!! NoCaptcha::renderJs() !!}
+            {!! NoCaptcha::display() !!}
         </div>
     </form>
 </x-guest-layout>

@@ -22,12 +22,18 @@
                     <x-nav-link :href="route('anuncios.index')" :active="request()->routeIs('anuncios.index')">
                         {{ __('Anuncios') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('anuncios.create')" :active="request()->routeIs('anuncios.index')">
+                        {{ __('Crear anuncio') }}
+                    </x-nav-link>
                     @else
                     <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                         {{ __('Iniciar sesión') }}
                     </x-nav-link>
                     <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Registrar') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('anuncios.create')" :active="request()->routeIs('anuncios.index')">
+                        {{ __('Crear anuncio') }}
                     </x-nav-link>
                     @endauth
                 </div>
@@ -90,7 +96,11 @@
             <x-responsive-nav-link :href="route('anuncios.index')" :active="request()->routeIs('anuncios.index')">
                 {{ __('Anuncios') }}
             </x-responsive-nav-link>
+
             @else
+            <x-responsive-nav-link  :href="route('anuncios.create')" :active="request()->routeIs('anuncios.index')">
+                        {{ __('Crear anuncio') }}
+            </x-responsive-nav-link >
             <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
                 {{ __('Iniciar sesión') }}
             </x-responsive-nav-link>

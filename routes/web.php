@@ -6,6 +6,7 @@ use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AdministracionController;
 use App\Http\Controllers\Auth\NewPasswordController;
+
 Route::resource('anuncios', AnuncioController::class);
 
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
@@ -34,11 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Ruta para ver el anuncio (con un prefijo 'anuncio')
+    Route::get('/anuncio/{nombre}/{id_anuncio}', [WelcomeController::class, 'show'])->name('anuncio');
 
     // Administración de anuncios (protección por autenticación)
     Route::get('/administracion', [AdministracionController::class, 'index'])->name('administracion.index');
-    Route::get('/permitir/{anuncio}', [AdministracionController::class, 'permitir'])->name('administracion.permitir');
-    Route::get('/denegar/{anuncio}', [AdministracionController::class, 'denegar'])->name('administracion.denegar');
+    // Rutas para permitir y denegar anuncios
+    Route::get('/administracion/permitir/{anuncio}', [AdministracionController::class, 'permitir'])->name('administracion.permitir');
+    Route::get('/administracion/denegar/{anuncio}', [AdministracionController::class, 'denegar'])->name('administracion.denegar');
 });
 
 require __DIR__ . '/auth.php';
