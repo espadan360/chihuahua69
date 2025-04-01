@@ -12,7 +12,7 @@ Route::resource('anuncios', AnuncioController::class);
 Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
     ->name('password.reset');
 Route::post('reset-password/{token}', [NewPasswordController::class, 'store'])
-    ->name('password.custom.update');
+    ->name('password.custom.update');  
 // Ruta para la página de bienvenida (fuera del grupo de autenticación)
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 Route::get('/{nombre}/{id_anuncio}', [WelcomeController::class, 'show'])->name('anuncio');
