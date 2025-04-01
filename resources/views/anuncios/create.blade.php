@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="my-4">Crear Nuevo Anuncio</h1>
 
-    <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">       
+    <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="nombre">Nombre</label>
@@ -16,7 +16,7 @@
 
         <div class="form-group">
             <label for="genero">Genero</label>
-            <select class="form-control @error('id_genero') is-invalid @enderror" id="genero" name="id_genero">
+            <select class="form-control @error('id_genero') is-invalid @enderror" id="genero" name="id_genero" required>
                 <option value="" disabled selected>Selecciona una opción</option> <!-- Opción por defecto -->
                 @foreach ($generos as $genero)
                 <option value="{{ $genero->id }}" {{ old('id_genero') == $genero->id ? 'selected' : '' }}>
@@ -67,7 +67,7 @@
 
         <div class="form-group">
             <label for="tarifa_general">Otras tarifas</label>
-            <input type="text" class="form-control @error('tarifa_general') is-invalid @enderror" id="tarifa_general" name="tarifa_general" value="{{ old('tarifa_general') }}" required>
+            <input type="text" class="form-control @error('tarifa_general') is-invalid @enderror" id="tarifa_general" name="tarifa_general" value="{{ old('tarifa_general') }}">
             @error('tarifa_general')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -75,7 +75,7 @@
 
         <div class="form-group">
             <label for="nacionalidad">Nacionalidad</label>
-            <select class="form-control @error('id_nacionalidad') is-invalid @enderror" id="nacionalidad" name="id_nacionalidad">
+            <select class="form-control @error('id_nacionalidad') is-invalid @enderror" id="nacionalidad" name="id_nacionalidad" required>
                 <option value="" disabled selected>Selecciona una opción</option> <!-- Opción por defecto -->
                 @foreach ($nacionalidades as $nacionalidad)
                 <option value="{{ $nacionalidad->id }}" {{ old('id_nacionalidad') == $nacionalidad->id ? 'selected' : '' }}>
@@ -105,7 +105,7 @@
 
         <div class="form-group">
             <label for="municipio">Municipio</label>
-            <select class="form-control @error('id_municipio') is-invalid @enderror" id="municipio" name="id_municipio">
+            <select class="form-control @error('id_municipio') is-invalid @enderror" id="municipio" name="id_municipio" required>
                 <option value="" disabled selected>Selecciona una opción</option> <!-- Opción por defecto -->
                 @foreach ($municipios as $municipio)
                 <option value="{{ $municipio->id }}" {{ old('id_municipio') == $municipio->id ? 'selected' : '' }}>
@@ -136,7 +136,7 @@
 
         <div class="form-group">
             <label for="medidas">Medidas</label>
-            <input type="text" class="form-control @error('medidas') is-invalid @enderror" id="medidas" name="medidas" value="{{ old('medidas') }}" required>
+            <input type="text" class="form-control @error('medidas') is-invalid @enderror" id="medidas" name="medidas" value="{{ old('medidas') }}">
             @error('medidas')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -144,7 +144,7 @@
 
         <div class="form-group">
             <label for="altura">Altura (cm)</label>
-            <input type="number" class="form-control @error('altura') is-invalid @enderror" id="altura" name="altura" value="{{ old('altura') }}" required>
+            <input type="number" class="form-control @error('altura') is-invalid @enderror" id="altura" name="altura" value="{{ old('altura') }}">
             @error('altura')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -152,7 +152,7 @@
 
         <div class="form-group">
             <label for="peso">Peso (kg)</label>
-            <input type="number" class="form-control @error('peso') is-invalid @enderror" id="peso" name="peso" value="{{ old('peso') }}" required>
+            <input type="number" class="form-control @error('peso') is-invalid @enderror" id="peso" name="peso" value="{{ old('peso') }}">
             @error('peso')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -221,27 +221,27 @@
 
 
     document.getElementById('imagenes').addEventListener('change', function(event) {
-    const files = event.target.files;
-    const maxSize = 5 * 1024 * 1024; // 5MB
-    let totalSize = 0;
-    let invalid = false;
+        const files = event.target.files;
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        let totalSize = 0;
+        let invalid = false;
 
-    for (let i = 0; i < files.length; i++) {
-        totalSize += files[i].size;
-        if (files[i].size > maxSize) {
+        for (let i = 0; i < files.length; i++) {
+            totalSize += files[i].size;
+            if (files[i].size > maxSize) {
+                invalid = true;
+            }
+        }
+
+        if (totalSize > maxSize) {
             invalid = true;
         }
-    }
 
-    if (totalSize > maxSize) {
-        invalid = true;
-    }
-
-    if (invalid) {
-        alert('Las imágenes deben ser menores a 5MB.');
-        event.target.value = ''; 
-    }
-});
+        if (invalid) {
+            alert('Las imágenes deben ser menores a 5MB.');
+            event.target.value = '';
+        }
+    });
 </script>
 
 @endsection
