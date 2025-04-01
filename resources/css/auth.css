@@ -1,0 +1,50 @@
+.bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: black !important;
+}
+
+.bg-white {
+    --tw-bg-opacity: 1;
+    background-color:black !important;
+}
+
+input {
+    background-color: #ec81c3 !important;
+    border-color: rgb(255, 255, 255) !important ;
+}
+
+.focus\:ring-indigo-500:focus {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(255, 255, 255) !important;
+}
+
+
+.captcha {
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+    margin-top: 20px;   
+}
+.boton {
+    display: flex !important;
+    flex-direction: column !important;  
+    align-items: center !important;   
+    margin-top: 20px !important;
+    gap: 10px !important;   
+
+}
+label.block.font-medium.text-sm.text-gray-700.dark\:text-gray-300 {
+    color: white;
+}
+
+
+a{
+    color: aliceblue !important;
+}
+
+a:hover{
+    color: rgb(238, 57, 247) !important;
+}
+.img {
+    margin-top: 20px;
+}

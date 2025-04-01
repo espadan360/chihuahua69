@@ -1,8 +1,9 @@
+@vite(['resources/css/auth.css'])
 <x-guest-layout>
     <!-- Session Status -->
+     
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
+   <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <!-- Email Address -->
@@ -32,19 +33,21 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-end mt-4 boton">
+            
+        <x-primary-button class="ms-3">
+                {{ __('Log in') }}
+            </x-primary-button>
             @if (Route::has('password.request'))
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                {{ __('Forgot your password?') }}
+                {{ __('¿Olvidaste la contraseña?') }}
             </a>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
         </div>
+        <div class="captcha">
         {!! NoCaptcha::renderJs() !!}
         {!! NoCaptcha::display() !!}
-
+        </div>
     </form>
 </x-guest-layout>
