@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@vite(['resources/css/botones.css'])
 @section('content')
 <div class="container">
     <h1>Administración de Anuncios Pendientes</h1>
@@ -32,9 +32,9 @@
                     <!-- Verificar si la relación municipio está cargada -->
                     <td>{{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No disponible' }}</td>
                     <td>
-                        <a href="{{ route('administracion.permitir', $anuncio) }}" class="btn btn-success">Permitir</a>
-                        <a href="{{ route('administracion.denegar', $anuncio) }}" class="btn btn-danger">Denegar</a>
-                        <a href="{{ route('anuncio', ['nombre' => \Illuminate\Support\Str::slug($anuncio->nombre), 'id_anuncio' => $anuncio->id]) }}"class="btn btn-success">Ver</a>
+                        <a href="{{ route('administracion.permitir', $anuncio) }}" class="btn crear">Permitir</a>
+                        <a href="{{ route('administracion.denegar', $anuncio) }}" class="btn eliminar">Denegar</a>
+                        <a href="{{ route('anuncio', ['nombre' => \Illuminate\Support\Str::slug($anuncio->nombre), 'id_anuncio' => $anuncio->id]) }}"class="btn editar">Ver</a>
                     </td>
                 </tr>
             @endforeach
