@@ -36,9 +36,11 @@ img.logo {
 
 nav.dark\:bg-gray-800.border-b.border-gray-100.dark\:border-gray-700 {
     border: none;
-    margin:20px;
+    padding:20px;
     margin-bottom: 40px;
+    background-color: #e6b0d1;
 }
+
 
 .card-text{
     color: #000000;

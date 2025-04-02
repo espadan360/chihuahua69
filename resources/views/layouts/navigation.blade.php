@@ -18,7 +18,9 @@
                     <x-nav-link :href="route('anuncios.index')" :active="request()->routeIs('anuncios.index')">
                         {{ __('Anuncios') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="route('contactanos.index')" :active="request()->routeIs('contactanos.index')">
+                        {{ __('Contacto') }}
+                    </x-nav-link>
                     <!-- Mostrar el enlace de administración solo si el nivel_acceso del usuario es 1 -->
                     @if(auth()->user() && auth()->user()->nivel_acceso == 1)
                     <x-nav-link :href="route('administracion.index')" :active="request()->routeIs('administracion.index')">
@@ -79,9 +81,19 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Anuncios') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('anuncios.index')" :active="request()->routeIs('anuncios.index')">
+                        {{ __('Anuncios') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('contactanos.index')" :active="request()->routeIs('contactanos.index')">
+                        {{ __('Contacto') }}
+                    </x-responsive-nav-link>
+                    <!-- Mostrar el enlace de administración solo si el nivel_acceso del usuario es 1 -->
+                    @if(auth()->user() && auth()->user()->nivel_acceso == 1)
+                    <x-responsive-nav-link :href="route('administracion.index')" :active="request()->routeIs('administracion.index')">
+                        {{ __('Administración') }}
+                    </x-responsive-nav-link>
+                    @endif
+
         </div>
 
         <!-- Responsive Settings Options -->

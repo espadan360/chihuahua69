@@ -40,12 +40,17 @@
     color: #000 !important;
 }
 
-.filtrar:hover, .masfiltro:hover, .eliminarfiltro:hover{
+.filtrar:hover, .masfiltro:hover, .eliminarfiltro:hover, .enviar:hover{
     opacity: 0.8 !important;
 }
 
 .editar{
     background: #ecde81 !important;
+    color: #000 !important;
+}
+
+.enviar{
+    background: #ec81d8 !important;
     color: #000 !important;
 }
 

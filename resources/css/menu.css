@@ -1,15 +1,23 @@
 a {
-    color: #fcc0e5  !important;
+    color: #000000  !important;
+    font-size: 18px;
 }
 
 a:hover{
-    color: rgb(174, 112, 182) !important;
+    color: rgb(109, 61, 116) !important;
+    font-size: 18px;
+}
+
+a:active{
+    color: rgb(109, 61, 116) !important;
+    font-size: 18px !important;
 }
 
 svg{
-    color: #ff41b6;
+    color: #000000;
 }
 
 .font-medium.text-base.text-gray-800.dark\:text-gray-200, .font-medium.text-sm.text-gray-500{
-    color: #fcc0e5 !important;
+    color: #000000 !important;
+    font-size: 18px;
 }

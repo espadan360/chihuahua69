@@ -1,5 +1,5 @@
 @extends('layouts.appPublic')
-@vite(['resources/css/mainAnuncio.css'])
+@vite(['resources/css/contacto.css'])
 @vite(['resources/css/botones.css'])
 @section('content')
 
@@ -38,7 +38,7 @@
         <br>
         @enderror
         <br>
-        <button type="submit" class="btn crear">Enviar mensaje</button>
+        <button type="submit" class="btn enviar">Enviar mensaje</button>
     </form>
 </div>
 @if(session('info'))

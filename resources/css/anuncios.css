@@ -37,7 +37,7 @@
     background-color: rgba(0, 0, 0, 5) !important;
     background-image: url('http://127.0.0.1:8000/storage/paralax.png');
     background-attachment: fixed; 
-    background-position: top center;
+    background-position:center;
     background-repeat: no-repeat;
     background-size: cover;
     padding: 20px; 
@@ -55,6 +55,41 @@
     height: 100%;
     object-fit: cover;
 }
+
+/* Estilos generales */
+.textoSeo {
+    max-width: 90vw;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.8;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.textoSeo h2 {
+    font-size: 24px;
+    color: #d63384;
+    margin-bottom: 15px;
+    border-left: 5px solid #d63384;
+    padding-left: 10px;
+}
+
+.textoSeo p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: justify;
+    font-weight: bold;
+}
+
+
+
+/* Mejor espaciado */
+.textoSeo p:last-child {
+    margin-bottom: 0;
+}
+
 
 
 
