@@ -16,6 +16,10 @@
     background-color: #7e0267;
 }
 
+input{
+    border-radius: 8px !important;
+}
+
 /* Estilo general del contenedor */
 .container {
     max-width: 70vw !important;

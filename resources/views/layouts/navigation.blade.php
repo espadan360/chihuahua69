@@ -10,7 +10,7 @@
                         <!-- Redirige al inicio si el usuario no está autenticado -->
                         <a href="{{ route('welcome.index') }}">
                             <!-- Imagen del logo desde el directorio storage -->
-                            <img src="{{ asset('storage/LogoChihuahua.png') }}" alt="Logo Chihuahua" class="logo" />
+                            <img src="{{ asset('storage/LogoGris.png') }}" alt="Logo Chihuahua" class="logo" />
                         </a>
                     </div>
                 </div>

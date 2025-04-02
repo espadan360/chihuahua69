@@ -7,11 +7,11 @@
     <h1>Contacto</h1>
     <form action="{{route('contactanos.store')}}" method="POST">
         @csrf
-            <label>
-                Nombre
-                <br>
-                <input type="text" name="name" value="{{old('name')}}">
-            </label>
+        <label>
+            Nombre
+            <br>
+            <input type="text" name="name" value="{{old('name')}}">
+        </label>
         <br>
         @error('name')
         <p><strong>{{$message}}</strong></p>
@@ -40,7 +40,12 @@
         <br>
         <button type="submit" class="btn enviar">Enviar mensaje</button>
     </form>
+
 </div>
+<div class="btnVolver" style="margin-right: 20px;">
+    <a href="{{ route('welcome.index') }}" class="boton volver">Volver</a>
+</div>
+<br>
 @if(session('info'))
 <script>
     alert("{{session('info')}}");

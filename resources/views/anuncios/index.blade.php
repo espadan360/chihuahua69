@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="my-4">Listado de Anuncios</h1>
 
-    <a href="{{ route('anuncios.create') }}" class="btn crear">Crear anuncio</a>
+    <a href="{{ route('anuncios.create') }}" class="boton crear">Crear anuncio</a>
 
     <div class="table-responsive">
         <br>
@@ -52,5 +52,10 @@
             </tbody>
         </table>
     </div>
+    <br>
+    <div class="btnVolver">
+        <a href="{{ route('welcome.index') }}" class="boton volver">Volver</a>
+    </div>
+    <br>
 </div>
 @endsection
