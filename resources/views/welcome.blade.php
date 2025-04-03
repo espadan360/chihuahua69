@@ -114,56 +114,57 @@
     </form>
 
     <p>Escorts en Chihuahua estado disponibles ahora mismo para encuentro:</p>
-    <br>
-    <div class="row row-cols-1 row-cols-md-3 g-4 anuncioIndividual">
-        @foreach($anuncios as $anuncio)
-        <div class="col">
-            <a href="{{ route('anuncio', ['nombre' => \Illuminate\Support\Str::slug($anuncio->nombre), 'id_anuncio' => $anuncio->id]) }}">
-                <!-- Tarjeta de anuncio -->
-                <div class="card h-100">
-                    @php
-                    $imagen = $anuncio->imagenPrincipal ? $anuncio->imagenPrincipal : (object)['ruta' => '/'];
-                    @endphp
-                    <img src="{{ asset('storage/' . $imagen->ruta) }}" class="card-img-top" alt="Imagen del anuncio">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $anuncio->nombre }}</h5>
-                        <p class="card-text">
-                            {{ $anuncio->descripcion }}<br>
-                            <strong>Servicios:</strong> {{ $anuncio->servicios->pluck('nombre_servicio')->join(', ') }}<br>
-                            <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
-                            <strong>Nacionalidad:</strong> {{ $anuncio->nacionalidad ? $anuncio->nacionalidad->nombre_nacionalidad : 'No especificada' }} <br>
-                            <strong>Tarifa por hora:</strong> {{ $anuncio->tarifa_hora }}€/hora<br>
-                        </p>
-                    </div>
-                    <div class="card-footer text-center">
-                        {{ $anuncio->telefono }}
-                    </div>
+<br>
+<div class="row row-cols-2 row-cols-md-4 g-4 anuncioIndividual">
+    @foreach($anuncios as $anuncio)
+    <div class="col">
+        <a href="{{ route('anuncio', ['nombre' => \Illuminate\Support\Str::slug($anuncio->nombre), 'id_anuncio' => $anuncio->id]) }}">
+            <!-- Tarjeta de anuncio -->
+            <div class="card h-100">
+                @php
+                $imagen = $anuncio->imagenPrincipal ? $anuncio->imagenPrincipal : (object)['ruta' => '/'];
+                @endphp
+                <img src="{{ asset('storage/' . $imagen->ruta) }}" class="card-img-top" alt="Imagen del anuncio">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $anuncio->nombre }}</h5>
+                    <p class="card-text">
+                    {{ \Illuminate\Support\Str::limit($anuncio->descripcion, 70) }}<br>
+                    <strong>Servicios:</strong> 
+                    {{ \Illuminate\Support\Str::limit($anuncio->servicios->pluck('nombre_servicio')->join(', '), 50) }}<br>
+                        <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
+                        <strong>{{ $anuncio->tarifa_hora }}€/hora<br></strong> 
+                    </p>
                 </div>
-            </a>
-        </div>
-        @endforeach
+                <div class="card-footer text-center">
+                    {{ $anuncio->telefono }}
+                </div>
+            </div>
+        </a>
     </div>
+    @endforeach
+</div>
+
     <br>
     @endif
     <div class="textoSeo">
         <h2>
-            Cita erótica en Chihuahua estado
+            Cita erótica con sexoservidoras en Chihuahua estado
         </h2>
         <p>
-            ¿Buscas la mejor cita erótica dentro del estado de Chihuahua? En la web Chihuahua69 podrás encontrar las mejores profesionales eróticas, escorts y acompañantes, dispuestas a hacer realidad todas vuestras fantasías de manera ardiente.
+            ¿Buscas la mejor cita erótica dentro del estado de Chihuahua con sexoservidoras? En la web Chihuahua69 podrás encontrar las mejores profesionales eróticas, escorts y acompañantes, dispuestas a hacer realidad todas vuestras fantasías de manera ardiente.
 
-            Un portal completamente gratuito donde puedes poner tu anuncio para conocer nuevas personas, o directamente contactar a las mejores profesionales. Chihuahua69 es un portal creado para acompañantes y escorts en Chihuahua estado que buscan encontrar interesados en sus servicios.
+            Un portal completamente gratuito donde puedes poner tu anuncio para conocer nuevas personas, o directamente contactar a las mejores sexoservidoras. Chihuahua69 es un portal creado para acompañantes y escorts de todo el estado federal que buscan encontrar interesados en sus servicios.
         </p>
         <br>
         <div class="parallax">
-            <h2>Putas en Chihuahua, preciosas y elegantes</h2>
-            <p>Siente que la necesidad de conocer a preciosas putas en Chihuahua ahora está a tu alcance. Chihuahua69 en un portal web donde profesionales eróticos con diferentes expectativas y servicios a ofrecer, pueden colgar sus anuncios completamente gratis.</p>
-            <p>Aquí las putas en Chihuahua se sienten ellas mismas. Sin engaños, ni mentiras… aquí pueden ser ellas y ofrecer sus servicios de forma libre, independiente y sin coacciones. Profesionales independientes que buscan disfrutar de su tiempo con la mejor de las compañías.</p>
-            <p>Si eres una persona que viene a curiosear, o simplemente a ver de pasada lo que ocurre, te pedimos que tengas el máximo respeto por las escorts. Estas profesionales merecen el mismo buen trato que el resto, y si no estás dispuesto a dárselo te aconsejamos que abandones el portal.</p>
-
+            <h2> Encuentra Putas en Chihuahua 69</h2>
+            <p>Esta web de contactos está creada para que en un vistazo puedas conocer a putas en Chihuahua estado.</p>
+            <p>Podrás ponerte en contacto con escorts independientes, que anuncian sus servicios de forma libre y sin coacciones en Internet. Una posibilidad real de hacer tus deseos realidad, combinando pasión y placer.</p>
+            <p>En Chihuahua69 no toleramos la falta de respeto. Si eres una persona curiosa o interesada, pedimos que respetes las normas, así como en tu encuentro junto con putas en Chihuahua las trates como te gustaría que te tratarán a ti. Esto es una web de contacto, en la cual simplemente damos la posibilidad en que profesional e interesado se conozcan, pero aún así nos regimos por unos códigos éticos que pedimos cumplir.</p>
+            <br>
             <h2>Contacta ya con las escorts en Chihuahua 69</h2>
-            <p>¿Cansado de mentiras y falsas promesas? Contacta ya con las preciosas escorts en Chihuahua 69, aquí conseguirás de verdad tener esa cita tan deseada de forma real y sin engaños. Una web de contactos de las que no quedan, exclusiva del estado de Chihuahua.</p>
-            <p>Ten en cuenta que está página es en exclusiva para profesionales del sector erótico que viven o se encuentran en el estado de Chihuahua en México. Sabemos que es un estado muy reconocido, tanto por la propia identidad como por el encanto y la belleza de las chihuahuenses. Entonces si quieres disfrutar del placer de estar en una tierra única y con la mejor compañía, ya sabes donde tienes que venirte.</p>
+            <p>¿Quieres una conocer a escorts en Chihuahua? Contacta ya con las preciosas escorts en Chihuahua 69, aquí conseguirás de verdad tener esa cita tan deseada de forma real y sin engaños. Una web de contactos de las que no quedan, exclusiva del estado de Chihuahua.</p>
+            <p>Ten en cuenta que está página es en exclusiva para profesionales del sector erótico que viven o se encuentran en el estado de Chihuahua en México. Sabemos que es un estado muy reconocido, tanto por la propia identidad como por el encanto y la belleza de las chihuahuenses. Ahora si quieres dar un paso más y disfrutar del placer, ya sabes donde encontrar las mejores sexoservidoras.</p>
             <p>Chihuahua69 es la mejor web donde escorts y putas independientes pueden anunciarse. Disfruta ya del momento y consigue el contacto de auténticas profesionales con las que hacer realidad juntos vuestras fantasías. El placer te espera.</p>
         </div>
         <br>

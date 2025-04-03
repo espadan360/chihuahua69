@@ -29,13 +29,22 @@ class AuthenticatedSessionController extends Controller
         Validator::make($request->all(), [
             'g-recaptcha-response' => 'required|captcha',
         ])->validate();
-    
+
         // Autenticación normal
-        $request->authenticate();
-        $request->session()->regenerate();
-    
-        return redirect()->intended(route('dashboard', absolute: false));
+        $remember = $request->has('remember'); // Verifica si el checkbox "remember me" está marcado
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('dashboard', absolute: false));
+        }
+
+        // Si las credenciales no son correctas
+        return back()->withErrors([
+            'email' => 'Las credenciales proporcionadas no son correctas.',
+        ]);
     }
+
 
     /**
      * Destroy an authenticated session.

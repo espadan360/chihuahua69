@@ -67,11 +67,11 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $anuncioRelacionado->nombre }}</h5>
                         <p class="card-text">
-                            {{ $anuncioRelacionado->descripcion }}<br>
-                            <strong>Servicios:</strong> {{ $anuncioRelacionado->servicios->pluck('nombre_servicio')->join(', ') }}<br>
-                            <strong>Municipio:</strong> {{ $anuncioRelacionado->municipio ? $anuncioRelacionado->municipio->nombre_municipio : 'No especificado' }} <br>
-                            <strong>Nacionalidad:</strong> {{ $anuncioRelacionado->nacionalidad ? $anuncioRelacionado->nacionalidad->nombre_nacionalidad : 'No especificada' }} <br>
-                            <strong>Tarifa por hora:</strong> {{ $anuncioRelacionado->tarifa_hora }}€/hora<br>
+                            {{ \Illuminate\Support\Str::limit($anuncio->descripcion, 70) }}<br>
+                            <strong>Servicios:</strong>
+                            {{ \Illuminate\Support\Str::limit($anuncio->servicios->pluck('nombre_servicio')->join(', '), 50) }}<br>
+                            <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
+                            <strong>Tarifa por hora:</strong> {{ $anuncio->tarifa_hora }}€/hora<br>
                         </p>
                     </div>
                     <div class="card-footer text-center">
