@@ -35,6 +35,7 @@
         <!-- Page Content -->
         <main>
             @yield('content') 
+             @include('partials.age-verification')
         </main>
     </div>
 </body>

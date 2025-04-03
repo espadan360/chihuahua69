@@ -25,8 +25,8 @@
     padding-bottom: 5px;
 }
 
-.footer-section p {
-    font-size: 0.9em;
+.footer-section p,a {
+    font-size: 14px !important;
     line-height: 1.5em;
 }
 
@@ -87,27 +87,25 @@
             <h3>Enlaces Rápidos</h3>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Blog</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h3>Redes Sociales</h3>
+            <h3>Politica de privacidad</h3>
             <div class="social-links">
-                <a href="#" target="_blank" class="social-icon">Facebook</a>
-                <a href="#" target="_blank" class="social-icon">Twitter</a>
-                <a href="#" target="_blank" class="social-icon">LinkedIn</a>
+                <a href="#" target="_blank" class="social-icon">Politica de privacidad</a> <br>
+                <a href="#" target="_blank" class="social-icon">Politica de cookies</a> <br>
+                <a href="#" target="_blank" class="social-icon">Aviso legal</a> <br>
+                <a href="#" target="_blank" class="social-icon">Condiciones de uso</a>
             </div>
         </div>
         <div class="footer-section">
             <h3>Contacto</h3>
-            <p>Dirección: Calle Ficticia 123, Ciudad, País</p>
-            <p>Email: contacto@empresa.com</p>
-            <p>Tel: +123 456 789</p>
+            <p>Email: chihuahua69scort@gmail.com</p>
+            <a href="#">Contacto</a>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2025 Empresa. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Chihuahua69. Todos los derechos reservados.</p>
     </div>
 </footer>

@@ -1,4 +1,6 @@
 @vite(['resources/css/auth.css'])
+@extends('layouts.appPublic')
+@section('content')
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -55,3 +57,5 @@
         </div>
     </form>
 </x-guest-layout>
+@endsection
+

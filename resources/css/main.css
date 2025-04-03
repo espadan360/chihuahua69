@@ -52,3 +52,6 @@ nav.dark\:bg-gray-800.border-b.border-gray-100.dark\:border-gray-700 {
     color: #000000;
 }
 
+.modal-content {
+    background-color: #423443;
+}

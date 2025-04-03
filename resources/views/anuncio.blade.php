@@ -71,7 +71,7 @@
                             <strong>Servicios:</strong>
                             {{ \Illuminate\Support\Str::limit($anuncio->servicios->pluck('nombre_servicio')->join(', '), 50) }}<br>
                             <strong>Municipio:</strong> {{ $anuncio->municipio ? $anuncio->municipio->nombre_municipio : 'No especificado' }} <br>
-                            <strong>Tarifa por hora:</strong> {{ $anuncio->tarifa_hora }}€/hora<br>
+                            <strong>{{ $anuncio->tarifa_hora }}€/hora<br></strong>
                         </p>
                     </div>
                     <div class="card-footer text-center">
