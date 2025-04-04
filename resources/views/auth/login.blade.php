@@ -34,9 +34,12 @@
                 <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div>
-
         <div class="flex items-center justify-end mt-4 boton">
-
+        <div class="captcha">
+            {!! NoCaptcha::renderJs() !!}
+            {!! NoCaptcha::display() !!}
+        </div>
+        <br>
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
@@ -50,10 +53,6 @@
                 {{ __('Registrar') }}
             </x-nav-link>
 
-        </div>
-        <div class="captcha">
-            {!! NoCaptcha::renderJs() !!}
-            {!! NoCaptcha::display() !!}
         </div>
     </form>
 </x-guest-layout>

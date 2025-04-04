@@ -19,10 +19,22 @@
 }
 
 .card-footer {
-    background-color:  #fdd1ef !important; 
+    color: #d63384;
     font-size: 20px;
-    border-top: 1px solid #e9ecef; 
     border-radius: 8px !important;
+    border: none !important;
+    font-size: 25px;
+    background-color:  #fcc0e5 ;
+}
+
+.card-footer:hover {
+    color: #660294;
+    background-color:  #fcc0e5 ;
+}
+
+a{
+    color: #d63384;
+    font-size: 20px !important;  
 }
 
 .servicio-box {

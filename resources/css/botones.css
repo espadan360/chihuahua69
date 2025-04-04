@@ -41,10 +41,11 @@ font-size: 18px;
     color: #000 !important;
  }
 
-.eliminarfiltro{
+ .eliminarfiltro {
     background: #e66d66 !important;
     color: #000 !important;
-    padding: 7px 10px 7px 10px !important ;
+    padding: 9px 10px 9px 10px !important;
+    font-size: 17px !important;
 }
 
 .filtrar:hover, .masfiltro:hover, .eliminarfiltro:hover, .enviar:hover, .volver:hover, .crear:hover{

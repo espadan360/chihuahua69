@@ -109,7 +109,8 @@
         <div class="mt-3 botones">
             <button type="submit" class="boton filtrar">Filtrar</button>
             <button type="button" class="boton masfiltro" onclick="toggleFilters()">Más filtros</button>
-            <a href="{{ route('welcome.index') }}" class="boton eliminarfiltro">Eliminar filtros</a>
+            <button> <a href="{{ route('welcome.index') }}" class="boton eliminarfiltro">Eliminar filtros</a></button>
+           
         </div>
     </form>
 
@@ -135,9 +136,13 @@
                         <strong>{{ $anuncio->tarifa_hora }}€/hora<br></strong> 
                     </p>
                 </div>
+                <br>
+                 <a href="tel:{{ $anuncio->telefono }}">
                 <div class="card-footer text-center">
                     {{ $anuncio->telefono }}
                 </div>
+                </a>
+
             </div>
         </a>
     </div>

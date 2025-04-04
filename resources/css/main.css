@@ -15,10 +15,14 @@ h1 {
     font-size: 30px;
 }
 
- h2, h3, h4, h5, h6{
-    color: #ff66c5;
+h2, h3, h4, h5, h6 {
+    color: #ff66c5 !important;
     font-family: 'Anton', sans-serif;
     font-size: 25px;
+}
+
+ h5:hover {
+    color: #580482 !important;
 }
 
 /* Links blancos con efecto */

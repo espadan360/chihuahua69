@@ -1,8 +1,7 @@
 <style>
-    /* Estilos generales del footer */
 .footer {
-    background-color: #333; /* Color de fondo */
-    color: #fff; /* Color de texto */
+    background-color: #333; 
+    color: #fff; 
     padding: 40px 20px;
     font-family: Arial, sans-serif;
 }
@@ -10,7 +9,7 @@
 .footer-container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Asegura que los elementos se ajusten en pantallas pequeñas */
+    flex-wrap: wrap; 
 }
 
 .footer-section {
